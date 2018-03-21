@@ -86,10 +86,6 @@ GEM
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.23)
-    font-awesome-sass (5.0.6.2)
-      sass (>= 3.2)
-    font-ionicons-rails (2.0.1.5)
-      railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (0.9.5)
@@ -224,8 +220,6 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   country_select
   devise
-  font-awesome-sass (~> 5.0.6)
-  font-ionicons-rails
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

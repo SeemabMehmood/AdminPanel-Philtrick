@@ -19,8 +19,6 @@ gem 'devise'
 gem 'country_select'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
-gem 'font-awesome-sass', '~> 5.0.6'
-gem 'font-ionicons-rails'
 gem 'adminlte2-rails'
 
 group :development, :test do
