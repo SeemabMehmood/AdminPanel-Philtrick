@@ -22,7 +22,7 @@
               <ul class="menu">
                 <%= link_to "#" do %>
                   <div class="pull-left">
-                    <img src="/assets/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                    <%= image_tag "bitcoin-logo.png", class: "img-circle", alt: "User Image" %>
                   </div>
                   <h4>
                     Support Team
@@ -83,12 +83,12 @@
         </li>
         <li class="dropdown user user-menu">
           <%= link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do %>
-            <img src="/assets/user2-160x160.jpg" class="user-image" alt="User Image"/>
+            <%= image_tag "bitcoin-logo.png", class: "user-image", alt: "User Image" %>
             <span class="hidden-xs">Alexander Pierce</span>
           <% end %>
           <ul class="dropdown-menu">
             <li class="user-header">
-              <img src="/assets/user2-160x160.jpg" class="img-circle" alt="User Image" />
+              <%= image_tag "bitcoin-logo.png", class: "img-circle", alt: "User Image" %>
               <p>
                 Alexander Pierce - Web Developer
                 <small>Member since Nov. 2012</small>
