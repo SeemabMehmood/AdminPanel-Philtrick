@@ -1,0 +1,31 @@
+<%= form_for(user)  do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    Name: <%= form.text_field :name, required: true %>
+
+    <%= render 'new_user_fields', f: form if form.object.new_record? %>
+
+    Company Name: <%= form.text_field :company_name, required: true %>
+
+    Zip Code: <%= form.text_field :zip %>
+    Country: <%= form.country_select :country, required: true %>
+    Street Name: <%= form.text_field :street_name%>
+    Profit Share: <%= form.number_field :profit_share, required: true, step: :any %>
+
+    Net Income: <%= form.number_field :net_income, value: number_to_currency(form.object.net_income.to_f, delimiter: '
+    ', unit: 'BTC'), step: :any %>
+
+    <%= form.submit %>
+  </div>
+<% end %>

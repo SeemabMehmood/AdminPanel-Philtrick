@@ -1,0 +1,19 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  timeout: 5000
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  username: root
+  password: 
+  database: db/adminpanel_philtrick
+
+test:
+  <<: *default
+  database: db/test_adminpanel_philtrick
+
+production:
+  <<: *default
+  database: db/production_adminpanel_philtrick

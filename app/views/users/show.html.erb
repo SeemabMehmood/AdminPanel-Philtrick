@@ -1,0 +1,25 @@
+<h2>Customer Data</h2>
+
+<h3>Name</h3>
+<p><%= @user.name %></p>
+
+<h3>Email</h3>
+<p><%= @user.email %></p>
+
+<h3>Username</h3>
+<p><%= @user.username %></p>
+
+<h3>Company</h3>
+<p><%= @user.company_name %></p>
+
+<h3>Country</h3>
+<p><%= @user.country_name %></p>
+
+<h3>Profit Share</h3>
+<p><%= @user.profit_share %></p>
+
+<h3>Net Income</h3>
+<p><%= number_to_currency(@user.net_income, unit: "Ƀ", separator: "", delimiter: "", format: "%u %n") %></p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
