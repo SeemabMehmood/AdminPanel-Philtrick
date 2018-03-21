@@ -13,12 +13,12 @@
     </div>
     <ul class="sidebar-menu">
       <li class="header">Site Links</li>
-      <li class="active">
+      <li class="<%= sidebar_active_class %>">
         <%= link_to "#" do %>
           <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         <% end %>
       </li>
-      <li>
+      <li class="active">
         <%= link_to users_path do %>
           <i class="fa fa-user"></i> <span>Customers</span>
         <% end %>
