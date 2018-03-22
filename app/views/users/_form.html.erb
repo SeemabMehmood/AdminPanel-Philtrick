@@ -9,15 +9,7 @@
     <% end %>
   <% end %>
   <div class="box-body">
-    <div class="row">
-      <div class="col-xs-4">
-        <div class="form-group">
-          <%= form.label :name %>
-          <%= form.text_field :name, required: true, class: "form-control", placeholder: "Enter Name" %>
-        </div>
-      </div>
-      <%= render 'users/new_user_fields', f: form if form.object.new_record? %>
-    </div>
+    <%= render 'users/form_fields_row1', form: form %>
     <div class="row">
       <div class="col-xs-4">
         <div class="form-group">

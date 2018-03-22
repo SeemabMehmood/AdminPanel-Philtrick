@@ -1,0 +1,18 @@
+<div class="row">
+  <% if form.object.new_record? %>
+    <div class="col-xs-4">
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, required: true, class: "form-control", placeholder: "Enter Name" %>
+      </div>
+    </div>
+    <%= render 'users/new_user_fields', f: form if form.object.new_record? %>
+  <% else %>
+    <div class="col-xs-8">
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, required: true, class: "form-control", placeholder: "Enter Name" %>
+      </div>
+    </div>
+  <% end %>
+</div>
