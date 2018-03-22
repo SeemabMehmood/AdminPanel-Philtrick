@@ -1,6 +1,6 @@
 <div class="box box-success">
   <div class="box-header with-border">
-    <h3 class="box-title"><%= @user.name.titleize %></h3>
+    <h3 class="box-title"><%= titleize(@user.name) %></h3>
     <div class="box-tools pull-right">
       <%= link_to edit_user_path(@user), class: "btn btn-box-tool" do %>
         <i class="fa fa-edit"></i>

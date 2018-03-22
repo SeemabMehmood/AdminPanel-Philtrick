@@ -5,7 +5,7 @@
         <%= image_tag "bitcoin-logo.png", class: "img-circle", alt: "User Image" %>
       </div>
       <div class="pull-left info">
-        <p><%= current_user.name.titleize %></p>
+        <p><%= titleize(current_user.name) %></p>
         <%= link_to "#" do %>
           <i class="fa fa-circle text-success"></i> Online
         <% end %>
