@@ -1,2 +1,12 @@
-Email: <%= f.text_field :email, required: true %>
-Username: <%= f.text_field :username, required: true %>
+<div class="col-xs-4">
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, required: true, class: "form-control", placeholder: "Enter Email" %>
+  </div>
+</div>
+<div class="col-xs-4">
+  <div class="form-group">
+    <%= f.label :username %>
+    <%= f.text_field :username, required: true, class: "form-control", placeholder: "Enter Username" %>
+  </div>
+</div>
