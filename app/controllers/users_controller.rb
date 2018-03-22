@@ -33,14 +33,14 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update(edit_user_params)
-      respond_to do |format|
+    respond_to do |format|
+      if @user.update(edit_user_params)
         format.html { redirect_to users_path, notice: 'User was successfully updated.' }
         format.json { head :no_content }
-      end
-    else
+      else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -58,10 +58,10 @@ class UsersController < ApplicationController
     end
 
     def new_user_params
-      params.require(:user).permit(:id, :name, :email, :username, :company_name, :zip, :country, :street_name, :profit_share, :net_income)
+      params.require(:user).permit(:name, :email, :username, :company_name, :zip, :country, :street_name, :profit_share, :net_income)
     end
 
     def edit_user_params
-      params.require(:user).permit(:id, :name, :company_name, :zip, :country, :street_name, :profit_share, :net_income)
+      params.require(:user).permit(:name, :company_name, :zip, :country, :street_name, :profit_share, :net_income)
     end
 end
