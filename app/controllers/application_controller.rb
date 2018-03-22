@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to users_path, alert: exception.message
+    redirect_to authenticated_root_path, alert: exception.message
   end
 
   before_action :authenticate_user!

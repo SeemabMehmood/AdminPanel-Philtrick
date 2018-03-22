@@ -1,4 +1,5 @@
 module UsersHelper
-  def sidebar_active_class
+  def get_selected_country(user)
+    user.country if user.new_record?
   end
 end

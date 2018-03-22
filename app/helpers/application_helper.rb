@@ -3,7 +3,8 @@ module ApplicationHelper
     str.titleize
   end
 
-  def get_selected_country(user)
-    user.country if user.new_record?
+  def sidebar_active_class(current_page)
+    return 'active' if request.path == '/' && current_page == 'dashboard'
+    request.path.include?(current_page) ? 'active' : ''
   end
 end

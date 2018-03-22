@@ -13,16 +13,18 @@
     </div>
     <ul class="sidebar-menu">
       <li class="header">Site Links</li>
-      <li class="<%= sidebar_active_class %>">
-        <%= link_to "#" do %>
+      <li class="<%= sidebar_active_class('dashboard') %>">
+        <%= link_to authenticated_root_path do %>
           <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         <% end %>
       </li>
-      <li class="active">
-        <%= link_to users_path do %>
-          <i class="fa fa-user"></i> <span>Customers</span>
-        <% end %>
-      </li>
+      <% if can? :manage, User %>
+        <li class="<%= sidebar_active_class('/users') %>">
+          <%= link_to users_path do %>
+            <i class="fa fa-user"></i> <span>Customers</span>
+          <% end %>
+        </li>
+      <% end %>
       <li>
         <%= link_to "#" do %>
           <i class="fa fa-desktop"></i> <span>Workers</span>
