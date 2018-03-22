@@ -16,6 +16,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require Chart.min
 //= require app
 //= require main
 //= require_tree .

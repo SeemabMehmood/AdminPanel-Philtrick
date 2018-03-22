@@ -14,3 +14,16 @@
   float: right;
   color: #dd4b39;
 }
+
+.small-box > .inner {
+  padding: 12px;
+}
+
+.font-big {
+  font-size: 60px;
+}
+
+.font-bold {
+  font-size: 14.5px;
+  font-weight: bolder;
+}
