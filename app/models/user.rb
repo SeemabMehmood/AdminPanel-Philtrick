@@ -2,6 +2,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  validates :name, :username, :country, :company_name, presence: true
+  validates :profit_share, numericality: {less_than_or_equal_to: 100}
+  validates :net_income, numericality: {less_than_or_equal_to: 100000000}, allow_nil: true
+
   after_initialize :setup_password
 
   def country_name
