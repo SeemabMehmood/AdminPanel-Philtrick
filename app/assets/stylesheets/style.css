@@ -1,3 +1,7 @@
 .center-block {
   float: none;
 }
+
+.customer-show .row{
+  margin-left: auto;
+}

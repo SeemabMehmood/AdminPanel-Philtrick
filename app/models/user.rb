@@ -9,6 +9,11 @@ class User < ApplicationRecord
     country_name.translations[I18n.locale.to_s] || country_name.name
   end
 
+  def address
+    return country_name if street_name.blank?
+    [street_name, country_name].join(' - ')
+  end
+
   private
 
   def setup_password
