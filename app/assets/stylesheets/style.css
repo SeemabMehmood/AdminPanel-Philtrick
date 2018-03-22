@@ -5,3 +5,12 @@
 .customer-show .row{
   margin-left: auto;
 }
+
+.margin-r-5 {
+  margin-right: 5px;
+}
+
+.user-show-actions>i {
+  float: right;
+  color: #dd4b39;
+}
