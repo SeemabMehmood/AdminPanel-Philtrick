@@ -1,0 +1,50 @@
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">Workers</h3>
+  </div>
+  <div class="box-body">
+    <div class="table-responsive">
+      <table class="table no-margin">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th><i class="fa fa-bolt"></i> Cost</th>
+            <th>Net Income</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @workers.each do |worker| %>
+            <tr>
+              <td><%= titleize(worker.title) %></td>
+              <td><%= worker.description %></td>
+              <td><%= number_to_currency(worker.electricity_cost.to_f, delimiter: '', unit: '$') %></td>
+              <td><%= number_to_currency(worker.net_income.to_f, delimiter: '', unit: '$') %></td>
+              <td>
+                <%= link_to worker do %>
+                  <i class="fa fa-eye"></i>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to edit_worker_path(worker) do %>
+                  <i class="fa fa-edit"></i>
+                <% end %>
+              </td>
+              <td>
+                <% if current_user.admin %>
+                  <%= link_to  worker, method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <i class="fa fa-trash"></i>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="box-footer clearfix">
+    <%= link_to "Add New Worker", new_worker_path, class: "btn btn-sm btn-success" %>
+  </div>
+</div>
