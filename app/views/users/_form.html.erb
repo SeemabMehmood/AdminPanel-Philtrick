@@ -14,7 +14,7 @@
       <div class="col-xs-4">
         <div class="form-group">
           <%= form.label :company_name %>
-          <%= form.text_field :company_name, required: true, class: "form-control", placeholder: "Enter Company Name" %>
+          <%= form.text_field :company_name, required: true, class: "form-control", placeholder: "Enter Customer Company Name" %>
         </div>
       </div>
       <div class="col-xs-4">
@@ -26,7 +26,7 @@
       <div class="col-xs-4">
         <div class="form-group">
           <%= form.label :zip %>
-          <%= form.text_field :zip, required: true, class: "form-control", placeholder: "Enter Zip Code" %>
+          <%= form.text_field :zip, required: true, class: "form-control", placeholder: "Enter Customer Zip Code" %>
         </div>
       </div>
     </div>
@@ -34,19 +34,19 @@
       <div class="col-xs-4">
         <div class="form-group">
           <%= form.label :street_name %>
-          <%= form.text_field :street_name, required: true, class: "form-control", placeholder: "Enter Street Name" %>
+          <%= form.text_field :street_name, required: true, class: "form-control", placeholder: "Enter Customer Street Name" %>
         </div>
       </div>
       <div class="col-xs-4">
         <div class="form-group">
           <%= form.label :profit_share %>
-          <%= form.number_field :profit_share, placeholder: "Enter Profit Share amount", required: true, step: :any, class: "form-control" %>
+          <%= form.number_field :profit_share, placeholder: "Enter Customer Profit Share amount", required: true, step: :any, class: "form-control" %>
         </div>
       </div>
       <div class="col-xs-4">
         <div class="form-group">
           <%= form.label :net_income %>
-          <%= form.number_field :net_income, placeholder: "Enter Net Income", value: number_to_currency(form.object.net_income.to_f, delimiter: '
+          <%= form.number_field :net_income, placeholder: "Enter Customer Net Income", value: number_to_currency(form.object.net_income.to_f, delimiter: '
         ', unit: '$'), step: :any, class: "form-control" %>
         </div>
       </div>
