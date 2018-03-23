@@ -30,27 +30,10 @@
           <i class="fa fa-desktop"></i> <span>Workers</span>
         <% end %>
       </li>
-      <li class="treeview">
+      <li class="<%= sidebar_active_class('/workers') %>">
         <%= link_to "#" do %>
-          <i class="fa fa-suitcase"></i> <span>Wallet</span> <i class="fa fa-angle-left pull-right"></i>
+          <i class="fa fa-bitcoin"></i> <span>Deposits</span>
         <% end %>
-        <ul class="treeview-menu">
-          <li>
-            <%= link_to "#" do %>
-              <i class="fa fa-bitcoin"></i> <span>Withdrawals</span>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to "#" do %>
-              <i class="fa fa-bitcoin"></i> <span>Deposits</span>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to "#" do %>
-              <i class="fa fa-bitcoin"></i> <span>Transactions</span>
-            <% end %>
-          </li>
-        </ul>
       </li>
     </ul>
   </section>
