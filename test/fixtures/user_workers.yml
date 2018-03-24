@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  worker: one
+  net_income: 9.99
+
+two:
+  user: two
+  worker: two
+  net_income: 9.99
