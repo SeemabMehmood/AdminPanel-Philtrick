@@ -31,3 +31,8 @@
 .pad-center {
   padding: 6px 12px;
 }
+
+.show-box {
+  margin-bottom: 0px;
+  box-shadow: none;
+}

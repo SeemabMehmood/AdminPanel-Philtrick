@@ -12,4 +12,8 @@ module ApplicationHelper
     return "Customer" if titleize(params[:controller].parameterize) == "Users"
     titleize(params[:controller].parameterize)
   end
+
+  def no_data_message(collection_object)
+    ["<b>No ", titleize(collection_object.table_name), " found.</b>"].join.html_safe unless collection_object.any?
+  end
 end
