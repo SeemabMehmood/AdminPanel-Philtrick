@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :user_workers
   has_many :workers, through: :user_workers
 
+  attr_accessor :worker_id
+
   after_initialize :setup_password
 
   def country_name
@@ -19,6 +21,12 @@ class User < ApplicationRecord
   def address
     return country_name if street_name.blank?
     [street_name, country_name].join(' - ')
+  end
+
+  def self.initialize_user(params)
+    user = self.new(params.except(:worker_id))
+    user.workers << Worker.find(params[:worker_id]) if params[:worker_id].present?
+    user
   end
 
   private
