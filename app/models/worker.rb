@@ -5,4 +5,12 @@ class Worker < ApplicationRecord
 
   has_many :user_workers
   has_many :users, through: :user_workers
+
+  attr_accessor :user_id
+
+  def self.initialize_worker(params)
+    worker = self.new(params.except(:user_id))
+    worker.users << User.find(params[:user_id]) if params[:user_id].present?
+    worker
+  end
 end
