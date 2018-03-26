@@ -1,6 +1,6 @@
 <div class="box box-success">
   <div class="box-header with-border">
-    <h3 class="box-title"><%= titleize(@worker.title) %></h3>
+    <h3 class="box-title"><%= truncate titleize(@worker.title) %></h3>
     <div class="box-tools pull-right">
       <%= link_to edit_worker_path(@worker), class: "btn btn-box-tool show-actions" do %>
         <i class="fa fa-edit"></i>

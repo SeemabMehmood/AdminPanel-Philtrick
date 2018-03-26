@@ -13,4 +13,10 @@ class Worker < ApplicationRecord
     worker.users << User.find(params[:user_id]) if params[:user_id].present?
     worker
   end
+
+  def add_customers(user_ids)
+    user_ids.each do |user_id|
+      self.users << User.find(user_id)
+    end
+  end
 end

@@ -1,0 +1,24 @@
+<%= form_tag worker_add_customers_path, method: :post do |form| %>
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title"><%= truncate titleize(@worker.title) %></h3>
+  </div>
+  <div class="box-body">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= label_tag :user_ids, "Customers" %>
+          <%= select_tag "user_ids[]", options_for_select(
+                @users.map { |u| [u.name, u.id] },
+                @worker.users.pluck(:id)
+              ), multiple: true, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= submit_tag "Add Customers", class: "btn btn-success margin-r-5" %>
+    <%= link_to 'Back', worker_path(@worker), class: "btn btn-default" %>
+  </div>
+</div>
+<% end %>

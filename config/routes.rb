@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :workers
+  resources :workers do
+    get 'select_customers'
+    post 'add_customers'
+  end
 
 end
