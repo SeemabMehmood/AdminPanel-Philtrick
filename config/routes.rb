@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :workers do
     get 'select_customers'
     post 'add_customers'
+    delete 'remove_user'
   end
 
 end

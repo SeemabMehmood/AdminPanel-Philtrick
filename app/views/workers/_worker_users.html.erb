@@ -35,18 +35,8 @@
                 <td><%= user.net_income ? user.net_income : 0.0 %></td>
                 <td><%= render partial: "users/user_workers_links", locals: { user: user } %></td>
                 <td>
-                  <%= link_to user do %>
-                    <i class="fa fa-eye"></i>
-                  <% end %>
-                </td>
-                <td>
-                  <%= link_to edit_user_path(user) do %>
-                    <i class="fa fa-edit"></i>
-                  <% end %>
-                </td>
-                <td>
                   <% unless user.admin %>
-                    <%= link_to  user, method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <%= link_to  worker_remove_user_path(user_id: user, worker_id: @worker), method: :delete, data: { confirm: "Are you sure you want to remove customer for this worker?" } do %>
                       <i class="fa fa-trash"></i>
                     <% end %>
                   <% end %>

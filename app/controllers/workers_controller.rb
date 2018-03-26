@@ -72,6 +72,16 @@ class WorkersController < ApplicationController
     end
   end
 
+  def remove_user
+    @worker = Worker.find(params[:worker_id])
+    @worker.user_workers.find_by_user_id(params[:user_id]).destroy
+    respond_to do |format|
+      format.html { redirect_to @worker,
+                    alert: "Customer for Worker #{@worker.title.titleize} was successfully removed." }
+      format.json { head :no_content }
+    end
+  end
+
   private
     def set_worker
       @worker = Worker.find(params[:id])
