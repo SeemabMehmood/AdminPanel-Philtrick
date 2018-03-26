@@ -1,6 +1,9 @@
 <div class="box box-success">
   <div class="box-header with-border">
     <h3 class="box-title">Customers</h3>
+    <div class="box-tools pull-right">
+      <%= link_to "Add New Customer", new_user_path, class: "btn btn-sm btn-success" %>
+    </div>
   </div>
   <div class="box-body">
     <div class="table-responsive">
@@ -52,8 +55,5 @@
         </tbody>
       </table>
     </div>
-  </div>
-  <div class="box-footer clearfix">
-    <%= link_to "Add New Customer", new_user_path, class: "btn btn-sm btn-success" %>
   </div>
 </div>
