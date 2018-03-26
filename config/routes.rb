@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :users do
     get 'select_workers'
     post 'add_workers'
+    delete 'remove_worker'
   end
 
   resources :workers do
