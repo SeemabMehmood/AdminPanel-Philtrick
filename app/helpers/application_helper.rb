@@ -14,6 +14,10 @@ module ApplicationHelper
   end
 
   def no_data_message(collection_object)
-    ["<b>No ", titleize(collection_object.table_name), " found.</b>"].join.html_safe unless collection_object.any?
+    ["<b>No ", titleize(model_name(collection_object.table_name)), " found.</b>"].join.html_safe unless collection_object.any?
+  end
+
+  def model_name(table_nam)
+    table_nam == 'users' ? 'customers' : table_nam
   end
 end
