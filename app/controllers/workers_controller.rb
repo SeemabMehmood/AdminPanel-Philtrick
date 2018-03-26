@@ -53,7 +53,7 @@ class WorkersController < ApplicationController
 
   def select_customers
     @worker = Worker.find(params[:worker_id])
-    @users = User.all
+    @users = User.customers
   end
 
   def add_customers

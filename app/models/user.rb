@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :user_workers
   has_many :workers, through: :user_workers
 
+  scope :customers, -> { where(admin: false) }
+
   attr_accessor :worker_id
 
   after_initialize :setup_password
