@@ -1,6 +1,10 @@
 <div class="box show-box">
   <div class="box-header">
-    <h3 class="box-title"><%= titleize(@user.name) %> Workers</h3>
+    <h3 class="box-title"><b><%= titleize(@user.name) %> Workers</b></h3>
+    <div class="box-tools pull-right">
+      <%= link_to "Select Workers", user_select_workers_path(@user), class: "btn btn-sm btn-primary" %>
+      <%= link_to "Add New Worker", new_worker_path(user_id: @user), class: "btn btn-sm btn-success" %>
+    </div>
   </div>
   <div class="box-body">
     <% if @user.workers.any? %>
@@ -49,8 +53,5 @@
     <% else %>
       <%= no_data_message(@user.workers) %>
     <% end %>
-  </div>
-  <div class="box-footer">
-    <%= link_to "Add New Worker", new_worker_path(user_id: @user), class: "btn btn-sm btn-success" %>
   </div>
 </div>

@@ -11,7 +11,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users do
+    get 'select_workers'
+    post 'add_workers'
+  end
+
   resources :workers do
     get 'select_customers'
     post 'add_customers'

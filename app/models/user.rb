@@ -29,6 +29,12 @@ class User < ApplicationRecord
     user
   end
 
+  def add_workers(worker_ids)
+    worker_ids.each do |worker_id|
+      self.workers << Worker.find(worker_id)
+    end
+  end
+
   private
 
   def setup_password

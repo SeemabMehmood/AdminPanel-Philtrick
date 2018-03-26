@@ -54,6 +54,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def select_workers
+    @user = User.find(params[:user_id])
+    @workers = Worker.all
+  end
+
+  def add_workers
+    @user = User.find(params[:user_id])
+    if params[:worker_ids].present?
+      @user.add_workers(params[:worker_ids])
+      respond_to do |format|
+        format.html { redirect_to @user, notice: 'Workers were successfully added.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to user_select_workers_path, alert: 'Please select any worker from the list.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   private
     def set_user
       @user = User.find(params[:id])
