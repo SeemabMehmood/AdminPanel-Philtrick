@@ -9,6 +9,9 @@ turboload = ->
     $.AdminLTE.pushMenu.activate o.sidebarToggleSelector
   $.AdminLTE.layout.activate()
 
+  $('.alert').delay(5000).slideUp 500, ->
+    $('.alert').alert 'close'
+
 turborender = ->
   $.AdminLTE.tree(".sidebar")
 
