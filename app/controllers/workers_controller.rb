@@ -7,6 +7,13 @@ class WorkersController < ApplicationController
     @workers = Worker.all
   end
 
+  def offline
+    @workers = Worker.offline
+    respond_to do |format|
+      format.html { render 'workers/index' }
+    end
+  end
+
   def show
   end
 

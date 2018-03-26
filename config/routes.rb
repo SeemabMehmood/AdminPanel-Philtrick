@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   resources :workers do
+    get 'offline', on: :collection
     get 'select_customers'
     post 'add_customers'
     delete 'remove_user'
