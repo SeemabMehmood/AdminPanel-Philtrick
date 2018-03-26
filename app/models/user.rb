@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :profit_share, numericality: {less_than_or_equal_to: 100}
   validates :net_income, numericality: {less_than_or_equal_to: 100000000}, allow_nil: true
 
-  has_many :user_workers
+  has_many :user_workers, dependent: :delete_all
   has_many :workers, through: :user_workers
 
   scope :customers, -> { where(admin: false) }
