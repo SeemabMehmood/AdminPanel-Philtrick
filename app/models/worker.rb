@@ -9,6 +9,7 @@ class Worker < ApplicationRecord
   attr_accessor :user_id
 
   scope :offline, -> { left_outer_joins(:user_workers).where(user_workers: { user_id: nil }) }
+  scope :get_customer_workers, ->(user_id) { left_outer_joins(:user_workers).where(user_workers: { user_id: user_id }) }
 
   def self.initialize_worker(params)
     worker = self.new(params.except(:user_id))

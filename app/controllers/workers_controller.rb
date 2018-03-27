@@ -4,7 +4,7 @@ class WorkersController < ApplicationController
   before_action :set_worker, only: [:show, :edit, :update, :destroy]
 
   def index
-    @workers = Worker.all
+    @workers = current_user.admin ? Worker.all : Worker.get_customer_workers(current_user)
   end
 
   def offline

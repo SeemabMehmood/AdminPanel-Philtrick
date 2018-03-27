@@ -1,9 +1,11 @@
 <div class="box box-success">
   <div class="box-header with-border">
     <h3 class="box-title">Workers</h3>
-    <div class="box-tools pull-right">
-      <%= link_to "Add New Worker", new_worker_path, class: "btn btn-sm btn-success" %>
-    </div>
+    <% if current_user.admin %>
+      <div class="box-tools pull-right">
+        <%= link_to "Add New Worker", new_worker_path, class: "btn btn-sm btn-success" %>
+      </div>
+    <% end %>
   </div>
   <div class="box-body">
     <div class="table-responsive">
@@ -32,18 +34,20 @@
                   <i class="fa fa-eye"></i>
                 <% end %>
               </td>
-              <td>
-                <%= link_to edit_worker_path(worker) do %>
-                  <i class="fa fa-edit"></i>
-                <% end %>
-              </td>
-              <td>
-                <% if current_user.admin %>
-                  <%= link_to  worker, method: :delete, data: { confirm: "Are you sure?" } do %>
-                    <i class="fa fa-trash"></i>
+              <% if current_user.admin %>
+                <td>
+                  <%= link_to edit_worker_path(worker) do %>
+                    <i class="fa fa-edit"></i>
                   <% end %>
-                <% end %>
-              </td>
+                </td>
+                <td>
+                  <% if current_user.admin %>
+                    <%= link_to  worker, method: :delete, data: { confirm: "Are you sure?" } do %>
+                      <i class="fa fa-trash"></i>
+                    <% end %>
+                  <% end %>
+                </td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

@@ -5,7 +5,7 @@
       <%= link_to edit_user_path(@user), class: "btn btn-box-tool show-actions" do %>
         <i class="fa fa-edit"></i>
       <% end %>
-      <% unless @user.admin %>
+      <% if current_user.admin && not(@user.admin) %>
         <%= link_to  @user, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-box-tool show-actions" do %>
           <i class="fa fa-trash"></i>
         <% end %>
@@ -47,6 +47,6 @@
   <%= render partial: "users/user_workers" %>
 
   <div class="box-footer clearfix">
-    <%= link_to "Back", users_path, class: "btn btn-default" %>
+    <%= link_to "Back", back_user_url, class: "btn btn-default" %>
   </div>
 </div>
