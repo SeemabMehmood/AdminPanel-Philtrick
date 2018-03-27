@@ -6,6 +6,8 @@ class Worker < ApplicationRecord
   has_many :user_workers, dependent: :delete_all
   has_many :users, through: :user_workers
 
+  PER_PAGE = 10
+
   attr_accessor :user_id
 
   scope :offline, -> { left_outer_joins(:user_workers).where(user_workers: { user_id: nil }) }

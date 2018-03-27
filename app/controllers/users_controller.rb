@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.customers
+    @users = User.customers.paginate(page: params[:page], per_page: Worker::PER_PAGE)
   end
 
   def show

@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :user_workers, dependent: :delete_all
   has_many :workers, through: :user_workers
 
-  scope :customers, -> { where(admin: false) }
+  scope :customers, -> { where(admin: false).order('id desc') }
 
   attr_accessor :worker_id
 

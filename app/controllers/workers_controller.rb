@@ -5,6 +5,7 @@ class WorkersController < ApplicationController
 
   def index
     @workers = current_user.admin ? Worker.all : Worker.get_customer_workers(current_user)
+    @workers = @workers.paginate(page: params[:page], per_page: Worker::PER_PAGE)
   end
 
   def offline
