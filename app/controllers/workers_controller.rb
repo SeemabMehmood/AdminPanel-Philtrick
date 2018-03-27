@@ -16,6 +16,7 @@ class WorkersController < ApplicationController
   end
 
   def show
+    @worker_users = @worker.users.paginate(page: params[:page], per_page: Worker::PER_PAGE)
   end
 
   def new

@@ -9,7 +9,7 @@
     <% end %>
   </div>
   <div class="box-body">
-    <% if @user.workers.any? %>
+    <% if @user_workers.any? %>
       <div class="table-responsive">
         <table class="table no-margin">
           <thead>
@@ -23,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @user.workers.each do |worker| %>
+            <% @user_workers.each do |worker| %>
               <tr>
                 <td><%= titleize(worker.title) %></td>
                 <td><%= worker.description %></td>
@@ -45,5 +45,10 @@
     <% else %>
       <%= no_data_message(@user.workers) %>
     <% end %>
+  </div>
+  <div class="box-footer">
+    <div class="flickr_pagination">
+      <%= will_paginate @user_workers, container: false %>
+    </div>
   </div>
 </div>
