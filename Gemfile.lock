@@ -87,6 +87,9 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.7.1)
+    exception_notification (4.2.2)
+      actionmailer (>= 4.0, < 6)
+      activesupport (>= 4.0, < 6)
     execjs (2.7.0)
     ffi (1.9.23)
     globalid (0.4.1)
@@ -229,6 +232,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   country_select
   devise
+  exception_notification
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
