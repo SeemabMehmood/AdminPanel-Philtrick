@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update(edit_user_params.except(:action_name))
-        format.html { redirect_to redirect_url, notice: 'User was successfully updated.' }
+        format.html { redirect_to @redirect_url, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :edit }
@@ -100,7 +100,7 @@ class UsersController < ApplicationController
     end
 
     def set_redirect_url
-      redirect_url = users_path
-      redirect_url = @user if edit_user_params[:action_name] == 'show'
+      @redirect_url = users_path
+      @redirect_url = @user if edit_user_params[:action_name] == 'show'
     end
 end
