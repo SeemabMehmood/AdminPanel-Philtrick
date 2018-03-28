@@ -61,6 +61,6 @@
   </div>
   <div class="box-footer">
     <%= form.submit form_submit_text(form.object, 'Customer'), class: "btn btn-success margin-r-5" %>
-    <%= link_to 'Back', back_user_form_url(params[:method]), class: "btn btn-default" %>
+    <%= link_to 'Back', back_user_form_url(params[:method], form.object), class: "btn btn-default" %>
   </div>
 <% end %>
