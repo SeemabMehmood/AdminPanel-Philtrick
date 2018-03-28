@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 admin = User.find_or_initialize_by(email: 'admin@philtrick.com', username: 'admin1', company_name: 'Philtrick',
-                                    name: 'Admin', country: 'Spain', profit_share: 100.0, admin: true)
+                                    name: 'Admin', country: 'ES', profit_share: 100.0, admin: true)
 admin.password = 'admin1'
 admin.password_confirmation = 'admin1'
 admin.confirmed_at = DateTime.now
