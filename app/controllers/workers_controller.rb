@@ -2,6 +2,7 @@ class WorkersController < ApplicationController
   load_and_authorize_resource
 
   before_action :set_worker, only: [:show, :edit, :update, :destroy]
+  before_action :set_redirect_url, only: [:update]
 
   def index
     @workers = current_user.admin ? Worker.all : Worker.get_customer_workers(current_user)
@@ -42,8 +43,8 @@ class WorkersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @worker.update(worker_params)
-        format.html { redirect_to @worker, notice: 'Worker was successfully updated.' }
+      if @worker.update(worker_params.except(:action_name))
+        format.html { redirect_to @redirect_url, notice: 'Worker was successfully updated.' }
         format.json { render :show, status: :ok, location: @worker }
       else
         format.html { render :edit }
@@ -97,6 +98,11 @@ class WorkersController < ApplicationController
     end
 
     def worker_params
-      params.require(:worker).permit(:title, :description, :electricity_cost, :net_income, :user_id)
+      params.require(:worker).permit(:title, :description, :electricity_cost, :net_income, :user_id, :action_name)
+    end
+
+    def set_redirect_url
+      @redirect_url = workers_path
+      @redirect_url = @worker if worker_params[:action_name] == 'show'
     end
 end

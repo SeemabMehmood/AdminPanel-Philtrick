@@ -8,7 +8,7 @@ class Worker < ApplicationRecord
 
   PER_PAGE = 10
 
-  attr_accessor :user_id
+  attr_accessor :user_id, :action_name
 
   scope :offline, -> { left_outer_joins(:user_workers).where(user_workers: { user_id: nil }) }
   scope :get_customer_workers, ->(user_id) { left_outer_joins(:user_workers).where(user_workers: { user_id: user_id }) }

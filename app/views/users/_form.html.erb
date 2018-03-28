@@ -48,14 +48,13 @@
       <div class="col-xs-4">
         <div class="form-group">
           <%= form.label :net_income %>
-          <%= form.number_field :net_income, placeholder: "Enter Customer Net Income", value: number_to_currency(form.object.net_income.to_f, delimiter: '
-        ', unit: '$'), step: :any, class: "form-control" %>
+          <%= form.number_field :net_income, placeholder: "Enter Customer Net Income", value: form.object.net_income.to_f, step: :any, class: "form-control" %>
         </div>
       </div>
     </div>
   </div>
   <div class="box-footer">
-    <%= form.submit form_submit_text(form.object), class: "btn btn-success margin-r-5" %>
-    <%= link_to 'Back', back_user_form_url(action_name), class: "btn btn-default" %>
+    <%= form.submit form_submit_text(form.object, 'Customer'), class: "btn btn-success margin-r-5" %>
+    <%= link_to 'Back', back_user_form_url(params[:method]), class: "btn btn-default" %>
   </div>
 <% end %>
