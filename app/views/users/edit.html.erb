@@ -2,5 +2,5 @@
   <div class="box-header with-border">
     <h3 class="box-title">Edit <%= titleize(@user.name) %> Customer</h3>
   </div>
-  <%= render 'form', user: @user %>
+  <%= render 'form', user: @user, action_name: params[:method] %>
 </div>

@@ -7,11 +7,13 @@ module UsersHelper
     form_object.persisted? ? "Update Customer" : "Add Customer"
   end
 
-  def back_user_url(action_name=nil)
-    if action_name.present? && action_name == 'edit'
-      current_user.admin ? users_path : current_user
-    else
-      current_user.admin ? users_path : authenticated_root_path
-    end
+  def back_user_form_url(action_name)
+    return users_path if action_name == 'index'
+    current_user if action_name == 'show' || action_name.blank?
+  end
+
+  def back_user_show_url
+    return users_path if current_user.admin
+    authenticated_root_path
   end
 end
