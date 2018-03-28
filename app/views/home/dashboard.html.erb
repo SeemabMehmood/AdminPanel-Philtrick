@@ -55,7 +55,7 @@
         </h3>
         <hr>
         <p>Your Mining and BTC Deposit Address</p>
-        <div class="font-bold">33LtV5RajGfg5MyxBHGZ27Xjjggeych4GW</div>
+        <div class="font-bold"><%= current_user.mining_address ? current_user.mining_address : "Not Found" %></div>
       </div>
     </div>
   </div>
