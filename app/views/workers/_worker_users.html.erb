@@ -21,6 +21,7 @@
               <th>Company</th>
               <th>Profit Share</th>
               <th>Net Income</th>
+              <th>Mining Address</th>
               <th>Workers</th>
               <th colspan="3"></th>
             </tr>
@@ -35,6 +36,7 @@
                 <td><%= titleize(user.company_name) %></td>
                 <td><%= user.profit_share %></td>
                 <td><%= user.net_income ? user.net_income : 0.0 %></td>
+                <td><%= user.mining_address ? user.mining_address : "No Mining Address" %></td>
                 <td><%= render partial: "users/user_workers_links", locals: { user: user } %></td>
                 <td>
                   <% if current_user.admin && !(user.admin) %>

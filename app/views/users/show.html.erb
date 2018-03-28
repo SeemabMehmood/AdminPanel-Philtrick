@@ -39,7 +39,14 @@
       </div>
       <div class="col-xs-4">
         <strong><i class="fa fa-bitcoin margin-r-5"></i> Net Income</strong>
-        <p class="text-muted"><%= @user.net_income %></p>
+        <p class="text-muted"><%= @user.net_income ? @user.net_income : 0.0 %></p>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-4">
+        <strong><i class="fa fa-th margin-r-5"></i> Mining Address</strong>
+        <p class="text-muted"><%= @user.mining_address ? @user.mining_address : "No mining address" %></p>
       </div>
     </div>
   </div>

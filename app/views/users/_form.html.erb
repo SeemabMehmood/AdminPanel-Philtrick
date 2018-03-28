@@ -51,6 +51,12 @@
           <%= form.number_field :net_income, placeholder: "Enter Customer Net Income", value: form.object.net_income.to_f, step: :any, class: "form-control" %>
         </div>
       </div>
+      <div class="col-xs-4">
+        <div class="form-group">
+          <%= form.label :mining_address %>
+          <%= form.text_field :mining_address, placeholder: "Enter Customer Mining Address",class: "form-control" %>
+        </div>
+      </div>
     </div>
   </div>
   <div class="box-footer">
