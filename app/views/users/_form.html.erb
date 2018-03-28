@@ -1,5 +1,6 @@
 <%= form_for(user) do |form| %>
-  <%= form.hidden_field :worker_id, value: params[:worker_id] %>
+  <%= form.hidden_field :worker_id, value: params[:worker_id] if params[:worker_id].present? %>
+  <%= form.hidden_field :action_name, value: params[:method] if params[:method].present? %>
   <% if user.errors.any? %>
     <% user.errors.full_messages.each do |message| %>
       <div class="alert alert-danger alert-dismissable">

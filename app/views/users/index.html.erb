@@ -45,7 +45,7 @@
               </td>
               <td>
                 <% unless user.admin %>
-                  <%= link_to  user, method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <%= link_to user, method: :delete, data: { confirm: "Are you sure?" } do %>
                     <i class="fa fa-trash"></i>
                   <% end %>
                 <% end %>

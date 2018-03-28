@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_redirect_url, only: [:update]
 
   def index
     @users = User.customers.paginate(page: params[:page], per_page: Worker::PER_PAGE)
@@ -37,8 +38,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if @user.update(edit_user_params)
-        format.html { redirect_to users_path, notice: 'User was successfully updated.' }
+      if @user.update(edit_user_params.except(:action_name))
+        format.html { redirect_to redirect_url, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :edit }
@@ -95,6 +96,11 @@ class UsersController < ApplicationController
     end
 
     def edit_user_params
-      params.require(:user).permit(:name, :company_name, :zip, :country, :street_name, :profit_share, :net_income)
+      params.require(:user).permit(:name, :company_name, :zip, :country, :street_name, :profit_share, :net_income, :action_name)
+    end
+
+    def set_redirect_url
+      redirect_url = users_path
+      redirect_url = @user if edit_user_params[:action_name] == 'show'
     end
 end

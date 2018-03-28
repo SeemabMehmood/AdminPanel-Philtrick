@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   scope :customers, -> { where(admin: false).order('id desc') }
 
-  attr_accessor :worker_id
+  attr_accessor :worker_id, :action_name
 
   after_initialize :setup_password
 
