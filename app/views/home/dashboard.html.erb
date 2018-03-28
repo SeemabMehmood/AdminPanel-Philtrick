@@ -12,30 +12,32 @@
       <%= link_to workers_path, class: "small-box-footer" do %>See all Workers <i class="fa fa-arrow-circle-right"></i><% end %>
     </div>
   </div>
-  <div class="col-lg-4 col-xs-6">
-    <div class="small-box bg-green">
-      <div class="inner">
-        <h3><%= @offline_workers.count %><sup style="font-size: 20px"></sup></h3>
+  <% if current_user.admin %>
+    <div class="col-lg-4 col-xs-6">
+      <div class="small-box bg-green">
+        <div class="inner">
+          <h3><%= @offline_workers.count %><sup style="font-size: 20px"></sup></h3>
 
-        <p>Offline Workers</p>
+          <p>Offline Workers</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-ios-monitor"></i>
+        </div>
+        <%= link_to "#", class: "small-box-footer" do %>See all Offline Workers <i class="fa fa-arrow-circle-right"></i><% end %>
       </div>
-      <div class="icon">
-        <i class="ion ion-ios-monitor"></i>
-      </div>
-      <%= link_to "#", class: "small-box-footer" do %>See all Offline Workers <i class="fa fa-arrow-circle-right"></i><% end %>
     </div>
-  </div>
+  <% end %>
   <div class="col-lg-4 col-xs-6">
     <div class="small-box bg-yellow">
       <div class="inner">
-        <h3>98.12 <small class="text-muted">USD/day</small></h3>
+        <h3><%= show_income(current_user.net_income) %> <small class="text-muted">USD/day</small></h3>
 
-        <p>Earning in <span class="text-muted">BTC/day</span></p>
+        <p><%= to_btc(show_income(current_user.net_income)) %><span class="text-muted">BTC/day</span></p>
       </div>
       <div class="icon">
         <i class="ion ion-social-bitcoin"></i>
       </div>
-      <%= link_to "#", class: "small-box-footer" do %>See all Customers <i class="fa fa-arrow-circle-right"></i><% end %>
+      <%= link_to current_user, class: "small-box-footer" do %>See Profile <i class="fa fa-arrow-circle-right"></i><% end %>
     </div>
   </div>
   <div class="col-lg-6 col-xs-12">
@@ -46,12 +48,11 @@
       <div class="box-body">
         <h3>
           <div class="icon">
-            <i class="ion ion-social-bitcoin font-big"></i> Total Balance /
-            <small>Total in <span class="text-muted">USD</span></small>
+            <i class="ion ion-social-bitcoin font-big"></i> <%= show_income(current_user.net_income) %> USD /
+            <small><%= to_btc(show_income(current_user.net_income)) %> <span class="text-muted">BTC</span></small>
           </div>
 
         </h3>
-        <%= link_to "Wallet", "#" , class: "btn btn-block btn-warning" %>
         <hr>
         <p>Your Mining and BTC Deposit Address</p>
         <div class="font-bold">33LtV5RajGfg5MyxBHGZ27Xjjggeych4GW</div>
