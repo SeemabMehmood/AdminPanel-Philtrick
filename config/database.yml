@@ -1,13 +1,10 @@
 default: &default
-  adapter: mysql2
-  encoding: utf8
-  timeout: 5000
+  adapter: postgresql
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  username: root
-  password: 
   database: db/adminpanel_philtrick
 
 test:
@@ -16,4 +13,6 @@ test:
 
 production:
   <<: *default
-  database: db/production_adminpanel_philtrick
+  database: adminpanel_philtrick
+  username: myapp
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>

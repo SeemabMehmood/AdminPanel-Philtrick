@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20180328115011) do
 
-  create_table "deposits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "deposits", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "worker_id"
     t.decimal "income", precision: 10, scale: 2
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 20180328115011) do
     t.index ["worker_id"], name: "index_deposits_on_worker_id"
   end
 
-  create_table "user_workers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "user_workers", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "worker_id"
     t.decimal "net_income", precision: 10, scale: 2
@@ -32,7 +35,7 @@ ActiveRecord::Schema.define(version: 20180328115011) do
     t.index ["worker_id"], name: "index_user_workers_on_worker_id"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "username", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -66,7 +69,7 @@ ActiveRecord::Schema.define(version: 20180328115011) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  create_table "workers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "workers", force: :cascade do |t|
     t.string "title", default: "", null: false
     t.text "description"
     t.decimal "electricity_cost", precision: 5, scale: 2, default: "0.0", null: false
