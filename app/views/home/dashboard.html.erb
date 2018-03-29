@@ -51,7 +51,6 @@
             <i class="ion ion-social-bitcoin font-big"></i> <%= show_income(current_user.net_income) %> USD /
             <small><%= to_btc(show_income(current_user.net_income)) %> <span class="text-muted">BTC</span></small>
           </div>
-
         </h3>
         <hr>
         <p>Your Mining and BTC Deposit Address</p>
@@ -62,29 +61,28 @@
   <div class="col-lg-6 col-xs-12">
     <div class="box box-warning">
       <div class="box-header with-border">
-        <h3 class="box-title">Latest Transactions</h3>
+        <h3 class="box-title">Latest Deposits</h3>
       </div>
       <div class="box-body">
         <div class="table-responsive">
           <table class="table no-margin">
             <thead>
             <tr>
-              <th>Order ID</th>
-              <th>Item</th>
-              <th>Status</th>
-              <th>Popularity</th>
+              <th>Date</th>
+              <th>Worker</th>
+              <th>User</th>
+              <th>Income</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td><a href="pages/examples/invoice.html">OR9842</a></td>
-              <td>Call of Duty IV</td>
-              <td><span class="label label-success">Shipped</span></td>
-              <td>
-                <div class="sparkbar" data-color="#00a65a" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
-              </td>
-            </tr>
-            <tr>
+            <% @latest_deposits.each do |deposit| %>
+              <tr>
+                <td><%= deposit.created_at.to_datetime.strftime('%d-%m-%Y') %></td>
+                <td><%= link_to truncate(titleize(deposit.worker.title)), deposit.worker %></td>
+                <td><%= link_to titleize(deposit.user.name), deposit.user %></td>
+                <td><%= number_to_currency(deposit.income, delimiter: ',', unit: '$') %></td>
+              </tr>
+            <% end %>
             </tbody>
           </table>
         </div>
@@ -98,6 +96,8 @@
       </div>
       <div class="box-body">
         <div class="chart">
+          <%= content_tag :div, id: "deposits_information", data: { latest_deposits: @chart_data.values.collect {|x| x.sum(&:income)}, labels: @chart_data.keys } do %>
+          <% end %>
           <canvas id="lineChart" style="height: 249px; width: 468px;" width="468" height="249"></canvas>
         </div>
       </div>

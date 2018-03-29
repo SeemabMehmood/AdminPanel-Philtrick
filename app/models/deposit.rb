@@ -5,6 +5,7 @@ class Deposit < ApplicationRecord
   validates :income, numericality: {less_than_or_equal_to: 100000000}
 
   scope :get_customer_deposits, ->(user_id) { where(user_id: user_id) }
+  scope :latest, -> { order('created_at desc').first(5) }
 
   before_save :update_customer_income
 
