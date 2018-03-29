@@ -39,7 +39,7 @@
       </div>
       <div class="col-xs-4">
         <strong><i class="fa fa-bitcoin margin-r-5"></i> Net Income</strong>
-        <p class="text-muted"><%= @user.net_income ? @user.net_income : 0.0 %></p>
+        <p class="text-muted"><%= number_to_currency(@user.net_income ? @user.net_income : 0.0, delimeter: ',', unit:'$') %></p>
       </div>
     </div>
     <hr>
