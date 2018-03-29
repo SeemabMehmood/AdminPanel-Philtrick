@@ -1,0 +1,47 @@
+<%= form_with(model: worker, local: true) do |form| %>
+  <%= form.hidden_field :user_id, value: params[:user_id] if params[:user_id].present? %>
+  <%= form.hidden_field :action_name, value: params[:method] if params[:method].present? %>
+  <% if worker.errors.any? %>
+    <% worker.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger alert-dismissable">
+        <i class="fa fa-ban"></i>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <b><%= message %></b>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="box-body">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= form.label :title %>
+          <%= form.text_field :title, required: true, class: "form-control", placeholder: "Enter Worker Title" %>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: "form-control", placeholder: "Enter Worker Description" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= form.label :electricity_cost %>
+          <%= form.number_field :electricity_cost, required: true, placeholder: "Enter Worker Elictricity Cost", required: true, step: :any, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= form.label :net_income %>
+          <%= form.number_field :net_income, placeholder: "Enter Worker Net Income", value: form.object.net_income.to_f, step: :any, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= form.submit form_submit_text(form.object, 'Worker'), class: "btn btn-success margin-r-5" %>
+    <%= link_to 'Back', back_worker_form_url(params[:method], form.object), class: "btn btn-default" %>
+  </div>
+<% end %>

@@ -1,0 +1,66 @@
+<%= form_for(user) do |form| %>
+  <%= form.hidden_field :worker_id, value: params[:worker_id] if params[:worker_id].present? %>
+  <%= form.hidden_field :action_name, value: params[:method] if params[:method].present? %>
+  <% if user.errors.any? %>
+    <% user.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger alert-dismissable">
+        <i class="fa fa-ban"></i>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <b><%= message %></b>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="box-body">
+    <%= render 'users/form_fields_row1', form: form %>
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="form-group">
+          <%= form.label :company_name %>
+          <%= form.text_field :company_name, required: true, class: "form-control", placeholder: "Enter Customer Company Name" %>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="form-group">
+          <%= form.label :country %>
+          <%= form.country_select :country, {prompt: "Please select a country"}, {selected: get_selected_country(form.object), class: "form-control", required: true} %>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="form-group">
+          <%= form.label :zip %>
+          <%= form.text_field :zip, required: true, class: "form-control", placeholder: "Enter Customer Zip Code" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="form-group">
+          <%= form.label :street_name %>
+          <%= form.text_field :street_name, required: true, class: "form-control", placeholder: "Enter Customer Street Name" %>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="form-group">
+          <%= form.label :profit_share %>
+          <%= form.number_field :profit_share, placeholder: "Enter Customer Profit Share amount", required: true, step: :any, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="form-group">
+          <%= form.label :net_income %>
+          <%= form.number_field :net_income, placeholder: "Enter Customer Net Income", value: form.object.net_income.to_f, step: :any, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="form-group">
+          <%= form.label :mining_address %>
+          <%= form.text_field :mining_address, placeholder: "Enter Customer Mining Address",class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= form.submit form_submit_text(form.object, 'Customer'), class: "btn btn-success margin-r-5" %>
+    <%= link_to 'Back', back_user_form_url(params[:method], form.object), class: "btn btn-default" %>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+<p>Welcome <%= @email %>!</p>
+
+<p>Your new account has been created on Philtrick</p>
+<p>Your Password is <%= @password %>, also please change your password at your first priority.</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>

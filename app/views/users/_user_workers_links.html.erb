@@ -1,0 +1,4 @@
+<%= no_data_message(user.workers) %>
+<% user.workers.each do |worker| %>
+  <%= link_to titleize(worker.title), worker_path(worker) %>
+<% end %>

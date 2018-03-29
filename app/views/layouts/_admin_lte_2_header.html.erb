@@ -1,0 +1,40 @@
+<header class="main-header">
+
+  <%= link_to "#", class: "logo" do %>
+    <span class="logo-mini"><b>P</b>AP</span>
+    <span class="logo-lg"><b>Philtrick</b> Admin Panel</span>
+  <% end %>
+
+  <nav class="navbar navbar-static-top" role="navigation">
+    <%= link_to "#", class: "sidebar-toggle", role: "button", data: {toggle: "offcanvas"} do %>
+      <span class="sr-only">Toggle navigation</span>
+    <% end %>
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li class="dropdown user user-menu">
+          <%= link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do %>
+            <%= image_tag "bitcoin-logo.png", class: "user-image", alt: "User Image" %>
+            <span class="hidden-xs"><%= titleize(current_user.name) %></span>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li class="user-header">
+              <%= image_tag "bitcoin-logo.png", class: "img-circle", alt: "User Image" %>
+              <p>
+                <%= titleize(current_user.name) %> - <%= titleize(current_user.company_name) %>
+                <small>Profit Share: <%= current_user.profit_share %></small>
+              </p>
+            </li>
+            <li class="user-footer">
+              <div class="pull-left">
+                <%= link_to "Profile", user_path(current_user), class: "btn btn-default btn-flat" %>
+              </div>
+              <div class="pull-right">
+                <%= link_to "Sign out", destroy_user_session_path, class: "btn btn-default btn-flat" %>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

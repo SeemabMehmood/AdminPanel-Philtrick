@@ -1,0 +1,35 @@
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title"><%= @deposit.created_at.to_datetime.strftime("%d-%m-%Y") %></h3>
+    <div class="box-tools pull-right">
+      <%= link_to edit_deposit_path(@deposit, method: 'show'), class: "btn btn-box-tool show-actions" do %>
+        <i class="fa fa-edit"></i>
+      <% end %>
+      <% if current_user.admin %>
+        <%= link_to @deposit, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-box-tool show-actions" do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="box-body">
+    <div class="row">
+      <div class="col-xs-6">
+        <strong><i class="fa fa-align-left margin-r-5"></i> Customer</strong>
+        <p class="text-muted"><%= link_to titleize(@deposit.user.name), @deposit.user %></p>
+      </div>
+      <div class="col-xs-6">
+        <strong><i class="fa fa-bolt margin-r-5"></i> Worker</strong>
+        <p class="text-muted"><%= link_to titleize(@deposit.worker.title), @deposit.worker %></p>
+      </div>
+      <div class="col-xs-6">
+        <strong><i class="fa fa-bitcoin margin-r-5"></i> Net Income</strong>
+        <p class="text-muted"><%= number_to_currency(@deposit.income, delimiter: ',', unit: '$') %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box-footer clearfix">
+    <%= link_to "Back", deposits_path, class: "btn btn-default" %>
+  </div>
+</div>

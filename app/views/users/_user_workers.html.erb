@@ -1,0 +1,54 @@
+<div class="box show-box">
+  <div class="box-header">
+    <h3 class="box-title"><b><%= titleize(@user.name) %> Workers</b></h3>
+    <% if current_user.admin %>
+      <div class="box-tools pull-right">
+        <%= link_to "Select Workers", user_select_workers_path(@user), class: "btn btn-sm btn-primary" %>
+        <%= link_to "Add New Worker", new_worker_path(user_id: @user), class: "btn btn-sm btn-success" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="box-body">
+    <% if @user_workers.any? %>
+      <div class="table-responsive">
+        <table class="table no-margin">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th><i class="fa fa-bolt"></i> Cost</th>
+              <th>Net Income</th>
+              <th>Customers</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user_workers.each do |worker| %>
+              <tr>
+                <td><%= titleize(worker.title) %></td>
+                <td><%= worker.description %></td>
+                <td><%= number_to_currency(worker.electricity_cost.to_f, delimiter: '', unit: '$') %></td>
+                <td><%= number_to_currency(worker.net_income.to_f, delimiter: '', unit: '$') %></td>
+                <td><%= render partial: "workers/worker_users_links", locals: { worker: worker } %></td>
+                <td>
+                  <% if current_user.admin %>
+                    <%= link_to user_remove_worker_path(user_id: @user, worker_id: worker), method: :delete, data: { confirm: "Are you sure you want to remove worker for this customer?" } do %>
+                      <i class="fa fa-trash"></i>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <%= no_data_message(@user.workers) %>
+    <% end %>
+  </div>
+  <div class="box-footer">
+    <div class="flickr_pagination">
+      <%= will_paginate @user_workers, container: false %>
+    </div>
+  </div>
+</div>

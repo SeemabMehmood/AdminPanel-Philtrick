@@ -1,0 +1,62 @@
+<div class="box show-box">
+  <div class="box-header with-border">
+    <h3 class="box-title"><b><%= truncate titleize(@worker.title) %> Customers</b></h3>
+    <% if current_user.admin %>
+      <div class="box-tools pull-right">
+        <%= link_to "Select Customers", worker_select_customers_path(@worker), class: "btn btn-sm btn-primary" %>
+        <%= link_to "Add New Customer", new_user_path(worker_id: @worker), class: "btn btn-sm btn-success" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="box-body">
+    <% if @worker_users.any? %>
+      <div class="table-responsive">
+        <table class="table no-margin">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Country</th>
+              <th>Company</th>
+              <th>Profit Share</th>
+              <th>Net Income</th>
+              <th>Mining Address</th>
+              <th>Workers</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @worker_users.each do |user| %>
+              <tr>
+                <td><%= titleize(user.name) %></td>
+                <td><%= user.username %></td>
+                <td><%= user.email %></td>
+                <td><%= user.country_name %></td>
+                <td><%= titleize(user.company_name) %></td>
+                <td><%= user.profit_share %></td>
+                <td><%= user.net_income ? user.net_income : 0.0 %></td>
+                <td><%= user.mining_address ? user.mining_address : "No Mining Address" %></td>
+                <td><%= render partial: "users/user_workers_links", locals: { user: user } %></td>
+                <td>
+                  <% if current_user.admin && !(user.admin) %>
+                    <%= link_to  worker_remove_user_path(user_id: user, worker_id: @worker), method: :delete, data: { confirm: "Are you sure you want to remove customer for this worker?" } do %>
+                      <i class="fa fa-trash"></i>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <%= no_data_message(@worker_users) %>
+    <% end %>
+  </div>
+  <div class="box-footer">
+    <div class="flickr_pagination">
+      <%= will_paginate @worker_users, container: false %>
+    </div>
+  </div>
+</div>

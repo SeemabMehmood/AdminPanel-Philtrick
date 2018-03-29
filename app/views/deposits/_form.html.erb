@@ -1,0 +1,46 @@
+<%= form_with(model: deposit, local: true) do |form| %>
+  <%= form.hidden_field :action_name, value: params[:method] if params[:method].present? %>
+  <% if deposit.errors.any? %>
+    <% deposit.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger alert-dismissable">
+        <i class="fa fa-ban"></i>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <b><%= message %></b>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="box-body">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= form.label :user_id, "Customer" %>
+          <%= form.select :user_id,
+                @users.map { |u| [u.name, u.id] },
+                { prompt: "Please select Customer" }, { class: "form-control", selected: @deposit.user.try(:id), required: true, include_blank: false }
+                %>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= form.label :worker_id, "Worker" %>
+          <%= form.select :worker_id,
+                @workers.map { |w| [w.title, w.id] },
+                { prompt: "Please select Worker" }, { class: "form-control", selected: @deposit.worker.try(:id), required: true }
+              %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= form.label :income %>
+          <%= form.number_field :income, placeholder: "Enter deposit Income", value: form.object.income.to_f, step: :any, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= form.submit form_submit_text(form.object, 'deposit'), class: "btn btn-success margin-r-5" %>
+    <%= link_to 'Back', back_deposit_form_url(params[:method], form.object), class: "btn btn-default" %>
+  </div>
+<% end %>

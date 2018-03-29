@@ -1,0 +1,40 @@
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title"><%= truncate titleize(@worker.title) %></h3>
+    <div class="box-tools pull-right">
+      <%= link_to edit_worker_path(@worker, method: 'show'), class: "btn btn-box-tool show-actions" do %>
+        <i class="fa fa-edit"></i>
+      <% end %>
+      <% if current_user.admin %>
+        <%= link_to  @worker, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-box-tool show-actions" do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="box-body customer-show">
+    <div class="row">
+      <div class="col-xs-12">
+        <strong><i class="fa fa-align-left margin-r-5"></i> Description</strong>
+        <p class="text-muted"><%= @worker.description %></p>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-6">
+        <strong><i class="fa fa-bolt margin-r-5"></i> Electricity Cost</strong>
+        <p class="text-muted"><%= @worker.electricity_cost %></p>
+      </div>
+      <div class="col-xs-6">
+        <strong><i class="fa fa-bitcoin margin-r-5"></i> Net Income</strong>
+        <p class="text-muted"><%= number_to_currency(@worker.net_income, delimiter: ',', unit: '$') %></p>
+      </div>
+    </div>
+  </div>
+
+  <%= render partial: "workers/worker_users" %>
+
+  <div class="box-footer clearfix">
+    <%= link_to "Back", workers_path, class: "btn btn-default" %>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title"><%= titleize(@user.name) %></h3>
+    <div class="box-tools pull-right">
+      <%= link_to edit_user_path(@user, method: 'show'), class: "btn btn-box-tool show-actions" do %>
+        <i class="fa fa-edit"></i>
+      <% end %>
+      <% if current_user.admin && not(@user.admin) %>
+        <%= link_to @user, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-box-tool show-actions" do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="box-body customer-show">
+    <div class="row">
+      <div class="col-xs-4">
+        <strong><i class="fa fa-envelope margin-r-5"></i> Email</strong>
+        <p class="text-muted"><%= @user.email %></p>
+      </div>
+      <div class="col-xs-4">
+        <strong><i class="fa fa-sign-in margin-r-5"></i> Username</strong>
+        <p class="text-muted"><%= @user.username %></p>
+      </div>
+      <div class="col-xs-4">
+        <strong><i class="fa fa-map-marker margin-r-5"></i> Address</strong>
+        <p class="text-muted"><%= @user.address %></p>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-4">
+        <strong><i class="fa fa-building margin-r-5"></i> Company</strong>
+        <p class="text-muted"><%= @user.company_name %></p>
+      </div>
+      <div class="col-xs-4">
+        <strong><i class="fa fa-percent margin-r-5"></i> Profit Share</strong>
+        <p class="text-muted"><%= @user.profit_share %></p>
+      </div>
+      <div class="col-xs-4">
+        <strong><i class="fa fa-bitcoin margin-r-5"></i> Net Income</strong>
+        <p class="text-muted"><%= number_to_currency(@user.net_income ? @user.net_income : 0.0, delimeter: ',', unit:'$') %></p>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-4">
+        <strong><i class="fa fa-th margin-r-5"></i> Mining Address</strong>
+        <p class="text-muted"><%= @user.mining_address ? @user.mining_address : "No mining address" %></p>
+      </div>
+    </div>
+  </div>
+
+  <%= render partial: "users/user_workers" %>
+
+  <div class="box-footer clearfix">
+    <%= link_to "Back", back_user_show_url, class: "btn btn-default" %>
+  </div>
+</div>

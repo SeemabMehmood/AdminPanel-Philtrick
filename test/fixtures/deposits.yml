@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  users: one
+  workers: one
+  income: 
+  income: 
+
+two:
+  users: two
+  workers: two
+  income: 
+  income: 
