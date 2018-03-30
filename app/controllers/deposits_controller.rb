@@ -69,7 +69,7 @@ class DepositsController < ApplicationController
     end
 
     def load_collections
-      @users = User.all
+      @users = User.customers
       @workers = Worker.all
     end
 end
