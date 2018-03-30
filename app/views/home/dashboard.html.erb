@@ -30,9 +30,9 @@
   <div class="col-lg-4 col-xs-6">
     <div class="small-box bg-yellow">
       <div class="inner">
-        <h3><%= show_income(current_user.net_income) %> <small class="text-muted">USD/day</small></h3>
+        <h3><%= show_income(current_user.net_income) %> <small class="text-muted">BTC/day</small></h3>
 
-        <p><%= to_btc(show_income(current_user.net_income)) %><span class="text-muted"> BTC/day</span></p>
+        <p><%= to_euro(show_income(current_user.net_income)) %><span class="text-muted"> EURO/day</span></p>
       </div>
       <div class="icon">
         <i class="ion ion-social-bitcoin"></i>
@@ -48,8 +48,8 @@
       <div class="box-body">
         <h3>
           <div class="icon">
-            <i class="ion ion-social-bitcoin font-big"></i> <%= show_income(current_user.net_income) %> USD /
-            <small><%= to_btc(show_income(current_user.net_income)) %> <span class="text-muted">BTC</span></small>
+            <i class="ion ion-social-bitcoin font-big"></i> <%= show_income(current_user.net_income) %> BTC /
+            <small><%= to_euro(show_income(current_user.net_income)) %> <span class="text-muted">EURO</span></small>
           </div>
         </h3>
         <hr>
@@ -80,7 +80,7 @@
                 <td><%= deposit.created_at.to_datetime.strftime('%d-%m-%Y') %></td>
                 <td><%= link_to truncate(titleize(deposit.worker.title)), deposit.worker %></td>
                 <td><%= link_to titleize(deposit.user.name), deposit.user %></td>
-                <td><%= number_to_currency(deposit.income, delimiter: ',', unit: '$') %></td>
+                <td><i class="fa fa-btc"></i> <%= deposit.income %></td>
               </tr>
             <% end %>
             </tbody>

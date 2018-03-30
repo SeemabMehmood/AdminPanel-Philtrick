@@ -35,11 +35,11 @@
       </div>
       <div class="col-xs-4">
         <strong><i class="fa fa-percent margin-r-5"></i> Profit Share</strong>
-        <p class="text-muted"><%= @user.profit_share %></p>
+        <p class="text-muted"><%= @user.profit_share %> %</p>
       </div>
       <div class="col-xs-4">
         <strong><i class="fa fa-bitcoin margin-r-5"></i> Net Income</strong>
-        <p class="text-muted"><%= number_to_currency(@user.net_income ? @user.net_income : 0.0, delimeter: ',', unit:'$') %></p>
+        <p class="text-muted"><i class="fa fa-btc"></i> <%= @user.net_income ? @user.net_income : 0.0 %></p>
       </div>
     </div>
     <hr>

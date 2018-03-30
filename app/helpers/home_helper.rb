@@ -1,6 +1,6 @@
 module HomeHelper
-  def to_btc(amount)
-    amount * 0.00013
+  def to_euro(amount)
+    amount * 5842.76
   end
 
   def show_income(income)

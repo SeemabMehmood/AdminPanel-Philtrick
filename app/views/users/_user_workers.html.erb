@@ -28,7 +28,7 @@
                 <td><%= titleize(worker.title) %></td>
                 <td><%= worker.description %></td>
                 <td><%= number_to_currency(worker.electricity_cost.to_f, delimiter: '', unit: '$') %></td>
-                <td><%= number_to_currency(worker.net_income.to_f, delimiter: '', unit: '$') %></td>
+                <td><i class="fa fa-btc"></i> <%= worker.net_income.to_f %></td>
                 <td><%= render partial: "workers/worker_users_links", locals: { worker: worker } %></td>
                 <td>
                   <% if current_user.admin %>

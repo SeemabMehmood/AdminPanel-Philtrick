@@ -25,7 +25,7 @@
             <tr>
               <td><%= link_to truncate(titleize(deposit.worker.title)), deposit.worker %></td>
               <td><%= link_to deposit.user.name, deposit.user %></td>
-              <td><%= number_to_currency(deposit.income.to_f, delimiter: '', unit: '$') %></td>
+              <td><i class="fa fa-btc"></i> <%= deposit.income.to_f %></td>
               <td><%= deposit.created_at.to_datetime.strftime('%d-%m-%Y') %></td>
               <td>
                 <%= link_to deposit do %>

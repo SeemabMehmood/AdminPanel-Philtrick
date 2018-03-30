@@ -34,8 +34,8 @@
                 <td><%= user.email %></td>
                 <td><%= user.country_name %></td>
                 <td><%= titleize(user.company_name) %></td>
-                <td><%= user.profit_share %></td>
-                <td><%= user.net_income ? user.net_income : 0.0 %></td>
+                <td><%= user.profit_share %> %</td>
+                <td><i class="fa fa-btc"></i> <%= user.net_income ? user.net_income : 0.0 %></td>
                 <td><%= user.mining_address ? user.mining_address : "No Mining Address" %></td>
                 <td><%= render partial: "users/user_workers_links", locals: { user: user } %></td>
                 <td>
