@@ -24,10 +24,8 @@ class User < ApplicationRecord
     [street_name, country_name].join(' - ')
   end
 
-  def add_workers(worker_ids)
-    worker_ids.each do |worker_id|
-      self.workers << Worker.find(worker_id)
-    end
+  def add_worker(worker_id, worker_count)
+    self.user_workers.create(worker_id: worker_id, worker_count: worker_count)
   end
 
   private

@@ -68,15 +68,15 @@ class WorkersController < ApplicationController
 
   def add_customers
     @worker = Worker.find(params[:worker_id])
-    if params[:user_ids].present?
-      @worker.add_customers(params[:user_ids])
+    if params[:user_id].present? && params[:worker_count].present? && params[:worker_count] != "0"
+      @worker.add_customer(params[:user_id], params[:worker_count])
       respond_to do |format|
         format.html { redirect_to @worker, notice: 'Customers were successfully added.' }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to worker_select_customers_path, alert: 'Please select any customer from the list.' }
+        format.html { redirect_to worker_select_customers_path, alert: 'Please select all fields.' }
         format.json { head :no_content }
       end
     end
