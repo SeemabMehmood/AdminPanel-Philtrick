@@ -30,9 +30,9 @@
   <div class="col-lg-4 col-xs-6">
     <div class="small-box bg-yellow">
       <div class="inner">
-        <h3><%= show_income(current_user.income_today) %> <small class="text-muted">BTC today</small></h3>
+        <h3><%= show_income(current_user.income_today) %></h3>
 
-        <p><%= to_euro(show_income(current_user.income_today)) %><span class="text-muted"> EURO today</span></p>
+        <p><span class="text-muted"><i class="fa fa-euro"></i></span><%= to_euro(show_income(current_user.income_today)) %> <span class="text-muted">/ Day</span></p>
       </div>
       <div class="icon">
         <i class="ion ion-social-bitcoin"></i>
@@ -48,8 +48,8 @@
       <div class="box-body">
         <h3>
           <div class="icon">
-            <i class="ion ion-social-bitcoin font-big"></i> <%= show_income(current_user.net_income) %> BTC /
-            <small><%= to_euro(show_income(current_user.net_income)) %> <span class="text-muted">EURO</span></small>
+            <i class="ion ion-social-bitcoin font-big"></i> <%= show_income(current_user.net_income) %> /
+            <small> <span class="text-muted"><i class="fa fa-euro"></i></span> <%= to_euro(show_income(current_user.net_income)) %></small>
           </div>
         </h3>
         <hr>

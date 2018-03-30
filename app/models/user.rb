@@ -43,11 +43,13 @@ class User < ApplicationRecord
 
   def update_net_income(worker_id, income_amount)
     income = self.net_income ? self.net_income : 0.0
-    self.net_income = income + Worker.find(worker_id).get_income_for_worker_count(self.id, income_amount)
+    worker = Worker.find(worker_id)
+    self.net_income = income + worker.get_income_for_worker_count(self.id, income_amount) - (worker.electricity_cost * 0.00018)
   end
 
   def daily_income_for_worker(worker_id)
-    Worker.find(worker_id).get_income_for_worker_count(self.id, Deposit.for_worker_today(worker_id).map(&:income).sum)
+    worker = Worker.find(worker_id)
+    worker.get_income_for_worker_count(self.id, Deposit.for_worker_today(worker_id).map(&:income).sum) - (worker.electricity_cost * 0.00018)
   end
 
   def income_today
