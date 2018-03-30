@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330144235) do
+ActiveRecord::Schema.define(version: 20180330145210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20180330144235) do
     t.decimal "net_income", precision: 15, scale: 12
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "total_workers", default: 0, null: false
     t.index ["title"], name: "index_workers_on_title", unique: true
   end
 

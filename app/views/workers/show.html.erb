@@ -14,9 +14,13 @@
   </div>
   <div class="box-body customer-show">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-6">
         <strong><i class="fa fa-align-left margin-r-5"></i> Description</strong>
         <p class="text-muted"><%= @worker.description %></p>
+      </div>
+      <div class="col-xs-6">
+        <strong><i class="fa fa-desktop margin-r-5"></i> Total Workers</strong>
+        <p class="text-muted"><i class="fa fa-btc"></i> <%= @worker.total_workers %></p>
       </div>
     </div>
     <hr>

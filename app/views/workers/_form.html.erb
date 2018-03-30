@@ -14,27 +14,33 @@
       <div class="col-xs-6">
         <div class="form-group">
           <%= form.label :title %>
-          <%= form.text_field :title, required: true, class: "form-control", placeholder: "Enter Worker Title" %>
+          <%= form.text_field :title, required: true, class: "form-control", placeholder: "Enter Worker Group Title" %>
         </div>
       </div>
       <div class="col-xs-6">
         <div class="form-group">
           <%= form.label :description %>
-          <%= form.text_area :description, class: "form-control", placeholder: "Enter Worker Description" %>
+          <%= form.text_area :description, class: "form-control", placeholder: "Enter Worker Group Description" %>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-6">
         <div class="form-group">
-          <%= form.label :electricity_cost %>
-          <%= form.number_field :electricity_cost, required: true, placeholder: "Enter Worker Elictricity Cost", required: true, step: :any, class: "form-control" %>
+          <%= form.label :electricity_cost, "Electricity Cost" %>
+          <%= form.number_field :electricity_cost, required: true, placeholder: "Enter Worker Group Elictricity Cost", required: true, step: :any, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= form.label :total_workers, "Total Workers" %>
+          <%= form.number_field :total_workers, required: true, placeholder: "Enter Total Workers in Worker Group", required: true, step: :any, class: "form-control" %>
         </div>
       </div>
     </div>
   </div>
   <div class="box-footer">
-    <%= form.submit form_submit_text(form.object, 'Worker'), class: "btn btn-success margin-r-5" %>
+    <%= form.submit form_submit_text(form.object, "Worker Group"), class: "btn btn-success margin-r-5" %>
     <%= link_to 'Back', back_worker_form_url(params[:method], form.object), class: "btn btn-default" %>
   </div>
 <% end %>
