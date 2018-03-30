@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330143105) do
+ActiveRecord::Schema.define(version: 20180330143831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20180330143105) do
   create_table "user_workers", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "worker_id"
-    t.decimal "net_income", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_workers_on_user_id"
