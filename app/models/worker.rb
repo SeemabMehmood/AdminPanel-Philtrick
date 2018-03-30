@@ -13,12 +13,6 @@ class Worker < ApplicationRecord
   scope :offline, -> { left_outer_joins(:user_workers).where(user_workers: { user_id: nil }) }
   scope :get_customer_workers, ->(user_id) { left_outer_joins(:user_workers).where(user_workers: { user_id: user_id }) }
 
-  def self.initialize_worker(params)
-    worker = self.new(params.except(:user_id))
-    worker.users << User.find(params[:user_id]) if params[:user_id].present?
-    worker
-  end
-
   def add_customers(user_ids)
     user_ids.each do |user_id|
       self.users << User.find(user_id)

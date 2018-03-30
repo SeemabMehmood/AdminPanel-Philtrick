@@ -28,7 +28,7 @@ class WorkersController < ApplicationController
   end
 
   def create
-    @worker = Worker.initialize_worker(worker_params)
+    @worker = Worker.new(worker_params)
 
     respond_to do |format|
       if @worker.save
@@ -98,7 +98,7 @@ class WorkersController < ApplicationController
     end
 
     def worker_params
-      params.require(:worker).permit(:title, :description, :electricity_cost, :user_id, :action_name)
+      params.require(:worker).permit(:title, :description, :electricity_cost, :action_name)
     end
 
     def set_redirect_url

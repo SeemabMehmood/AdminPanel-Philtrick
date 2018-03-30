@@ -25,12 +25,6 @@ class User < ApplicationRecord
     [street_name, country_name].join(' - ')
   end
 
-  def self.initialize_user(params)
-    user = self.new(params.except(:worker_id))
-    user.workers << Worker.find(params[:worker_id]) if params[:worker_id].present?
-    user
-  end
-
   def add_workers(worker_ids)
     worker_ids.each do |worker_id|
       self.workers << Worker.find(worker_id)

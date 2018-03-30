@@ -4,7 +4,6 @@
     <% if current_user.admin %>
       <div class="box-tools pull-right">
         <%= link_to "Select Customers", worker_select_customers_path(@worker), class: "btn btn-sm btn-primary" %>
-        <%= link_to "Add New Customer", new_user_path(worker_id: @worker), class: "btn btn-sm btn-success" %>
       </div>
     <% end %>
   </div>
