@@ -22,10 +22,15 @@ class Worker < ApplicationRecord
     false
   end
 
+  def remaining_worker_count
+    self.total_workers - self.user_workers.map(&:worker_count).sum
+  end
+
   def validate_customers(params)
     return false, "Customer Already Selected." if self.user_exists?(params[:user_id].to_i)
     return false, "Please select a customer." if params[:user_id].blank?
     return false, "Worker count can neither be blank nor 0" if params[:worker_count].blank? || params[:worker_count] == "0"
+    return false, "Worker count is greater than workers left in this group." if params[:worker_count].to_i > self.remaining_worker_count
     true
   end
 end
