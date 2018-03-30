@@ -98,7 +98,7 @@ class WorkersController < ApplicationController
     end
 
     def worker_params
-      params.require(:worker).permit(:title, :description, :electricity_cost, :net_income, :user_id, :action_name)
+      params.require(:worker).permit(:title, :description, :electricity_cost, :user_id, :action_name)
     end
 
     def set_redirect_url

@@ -92,11 +92,11 @@ class UsersController < ApplicationController
     end
 
     def new_user_params
-      params.require(:user).permit(:name, :email, :username, :company_name, :zip, :country, :street_name, :profit_share, :net_income, :worker_id)
+      params.require(:user).permit(:name, :email, :username, :company_name, :zip, :country, :street_name, :profit_share, :worker_id)
     end
 
     def edit_user_params
-      params.require(:user).permit(:name, :company_name, :zip, :country, :street_name, :profit_share, :net_income, :action_name)
+      params.require(:user).permit(:name, :company_name, :zip, :country, :street_name, :profit_share, :action_name)
     end
 
     def set_redirect_url
