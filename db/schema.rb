@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328115011) do
+ActiveRecord::Schema.define(version: 20180330102554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20180328115011) do
   create_table "deposits", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "worker_id"
-    t.decimal "income", precision: 10, scale: 2
+    t.decimal "income", precision: 15, scale: 12
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_deposits_on_user_id"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20180328115011) do
     t.string "currency", default: "USD", null: false
     t.string "language", default: "en", null: false
     t.integer "zip"
-    t.decimal "net_income", precision: 10, scale: 2
+    t.decimal "net_income", precision: 15, scale: 12
     t.string "street_name"
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20180328115011) do
     t.string "title", default: "", null: false
     t.text "description"
     t.decimal "electricity_cost", precision: 5, scale: 2, default: "0.0", null: false
-    t.decimal "net_income", precision: 10, scale: 2
+    t.decimal "net_income", precision: 15, scale: 12
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["title"], name: "index_workers_on_title", unique: true
