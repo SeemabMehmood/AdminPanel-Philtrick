@@ -37,6 +37,7 @@ class User < ApplicationRecord
     return false, "Worker Already Selected." if self.worker_exists?(params[:worker_id].to_i)
     return false, "Please select a worker." if params[:worker_id].blank?
     return false, "Worker count can neither be blank nor 0" if params[:worker_count].blank? || params[:worker_count] == "0"
+    return false, "Worker count is greater than workers left in this group." if params[:worker_count].to_i > Worker.find(params[:worker_id].to_i).remaining_worker_count
     true
   end
   private
