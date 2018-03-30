@@ -12,7 +12,7 @@
 //
 //= require rails-ujs
 //= require jquery
-//= require bootstrap-sprockets
+//= require bootstrap
 //= require turbolinks
 //= require Chart.min
 //= require app
