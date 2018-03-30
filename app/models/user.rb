@@ -28,6 +28,17 @@ class User < ApplicationRecord
     self.user_workers.create(worker_id: worker_id, worker_count: worker_count)
   end
 
+  def worker_exists?(worker_id)
+    return true if self.workers.pluck(:id).include? worker_id
+    false
+  end
+
+  def validate_workers(params)
+    return false, "Worker Already Selected." if self.worker_exists?(params[:worker_id].to_i)
+    return false, "Please select a worker." if params[:worker_id].blank?
+    return false, "Worker count can neither be blank nor 0" if params[:worker_count].blank? || params[:worker_count] == "0"
+    true
+  end
   private
 
   def setup_password

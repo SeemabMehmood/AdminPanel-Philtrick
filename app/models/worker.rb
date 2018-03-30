@@ -16,4 +16,16 @@ class Worker < ApplicationRecord
   def add_customer(user_id, worker_count)
     self.user_workers.create(user_id: user_id, worker_count: worker_count)
   end
+
+  def user_exists?(user_id)
+    return true if self.users.pluck(:id).include? user_id
+    false
+  end
+
+  def validate_customers(params)
+    return false, "Customer Already Selected." if self.user_exists?(params[:user_id].to_i)
+    return false, "Please select a customer." if params[:user_id].blank?
+    return false, "Worker count can neither be blank nor 0" if params[:worker_count].blank? || params[:worker_count] == "0"
+    true
+  end
 end

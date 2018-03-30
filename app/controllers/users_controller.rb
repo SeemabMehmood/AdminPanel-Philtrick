@@ -63,7 +63,8 @@ class UsersController < ApplicationController
 
   def add_workers
     @user = User.find(params[:user_id])
-    if params[:worker_id].present? && params[:worker_count].present? && params[:worker_count] != "0"
+    valid, message = @user.validate_workers(params)
+    if valid
       @user.add_worker(params[:worker_id], params[:worker_count])
       respond_to do |format|
         format.html { redirect_to @user, notice: 'Workers were successfully added.' }
@@ -71,7 +72,7 @@ class UsersController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to user_select_workers_path, alert: 'Please fill all fields.' }
+        format.html { redirect_to user_select_workers_path, alert: message }
         format.json { head :no_content }
       end
     end
