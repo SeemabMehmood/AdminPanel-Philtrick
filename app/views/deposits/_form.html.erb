@@ -15,7 +15,7 @@
         <div class="form-group">
           <%= form.label :worker_id, "Worker" %>
           <%= form.select :worker_id,
-                @workers.map { |w| [w.title, w.id] },
+                @workers.map { |w| [titleize(w.title), w.id] },
                 { prompt: "Please select Worker" }, { class: "form-control", selected: @deposit.worker.try(:id), required: true }
               %>
         </div>
