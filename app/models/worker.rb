@@ -9,6 +9,7 @@ class Worker < ApplicationRecord
 
   attr_accessor :user_id, :action_name
 
+  scope :active, -> { left_outer_joins(:user_workers).where.not(user_workers: { user_id: nil }) }
   scope :offline, -> { left_outer_joins(:user_workers).where(user_workers: { user_id: nil }) }
   scope :get_customer_workers, ->(user_id) { left_outer_joins(:user_workers).where(user_workers: { user_id: user_id }) }
 

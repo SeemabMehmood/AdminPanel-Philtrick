@@ -3,10 +3,10 @@ class DepositsController < ApplicationController
 
   before_action :set_deposit, only: [:show, :edit, :update, :destroy]
   before_action :set_redirect_url, only: [:update]
-  before_action :load_collections, only: [:new, :edit, :create, :update]
+  before_action :load_workers, only: [:new, :edit, :create, :update]
 
   def index
-    @deposits = current_user.admin ? Deposit.all : Deposit.get_customer_deposits(current_user)
+    @deposits = Deposit.all
     @deposits = @deposits.paginate(page: params[:page], per_page: Worker::PER_PAGE)
   end
 
@@ -60,7 +60,7 @@ class DepositsController < ApplicationController
     end
 
     def deposit_params
-      params.require(:deposit).permit(:user_id, :worker_id, :income)
+      params.require(:deposit).permit(:worker_id, :income)
     end
 
     def set_redirect_url
@@ -68,8 +68,7 @@ class DepositsController < ApplicationController
       @redirect_url = @deposit if deposit_params[:action_name] == 'show'
     end
 
-    def load_collections
-      @users = User.customers
-      @workers = Worker.all
+    def load_workers
+      @workers = Worker.active
     end
 end

@@ -13,15 +13,6 @@
     <div class="row">
       <div class="col-xs-6">
         <div class="form-group">
-          <%= form.label :user_id, "Customer" %>
-          <%= form.select :user_id,
-                @users.map { |u| [u.name, u.id] },
-                { prompt: "Please select Customer" }, { class: "form-control", selected: @deposit.user.try(:id), required: true, include_blank: false }
-                %>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <div class="form-group">
           <%= form.label :worker_id, "Worker" %>
           <%= form.select :worker_id,
                 @workers.map { |w| [w.title, w.id] },

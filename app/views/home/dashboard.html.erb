@@ -58,37 +58,37 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-6 col-xs-12">
-    <div class="box box-warning">
-      <div class="box-header with-border">
-        <h3 class="box-title">Latest Deposits</h3>
-      </div>
-      <div class="box-body">
-        <div class="table-responsive">
-          <table class="table no-margin">
-            <thead>
-            <tr>
-              <th>Date</th>
-              <th>Worker</th>
-              <th>User</th>
-              <th>Income</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% @latest_deposits.each do |deposit| %>
+  <% if current_user.admin %>
+    <div class="col-lg-6 col-xs-12">
+      <div class="box box-warning">
+        <div class="box-header with-border">
+          <h3 class="box-title">Latest Deposits</h3>
+        </div>
+        <div class="box-body">
+          <div class="table-responsive">
+            <table class="table no-margin">
+              <thead>
               <tr>
-                <td><%= deposit.created_at.to_datetime.strftime('%d-%m-%Y') %></td>
-                <td><%= link_to truncate(titleize(deposit.worker.title)), deposit.worker %></td>
-                <td><%= link_to titleize(deposit.user.name), deposit.user %></td>
-                <td><i class="fa fa-btc"></i> <%= deposit.income %></td>
+                <th>Date</th>
+                <th>Worker</th>
+                <th>Income</th>
               </tr>
-            <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+              <% @latest_deposits.each do |deposit| %>
+                <tr>
+                  <td><%= deposit.created_at.to_datetime.strftime('%d-%m-%Y') %></td>
+                  <td><%= link_to truncate(titleize(deposit.worker.title)), deposit.worker %></td>
+                  <td><i class="fa fa-btc"></i> <%= deposit.income %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
   <div class="col-lg-12 col-xs-12">
     <div class="box box-warning">
       <div class="box-header with-border">

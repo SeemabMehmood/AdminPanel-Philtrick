@@ -11,7 +11,6 @@ class Ability
         cannot :index, User
 
         can [:read], Worker, users: { id: user.id }
-        can [:read], Deposit, user_id: user.id
       end
     end
   end
