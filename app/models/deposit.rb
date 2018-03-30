@@ -13,7 +13,7 @@ class Deposit < ApplicationRecord
     worker = Worker.find(self.worker_id)
     worker.net_income = (worker.net_income ? worker.net_income : 0.0) + self.income
     worker.users.each do |user|
-      user.net_income = (user.net_income ? user.net_income : 0.0) + self.income
+      user.update_net_income(self.worker_id, self.income)
       user.save!
     end
     worker.save!

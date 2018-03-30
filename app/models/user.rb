@@ -40,6 +40,12 @@ class User < ApplicationRecord
     return false, "Worker count is greater than workers left in this group." if params[:worker_count].to_i > Worker.find(params[:worker_id].to_i).remaining_worker_count
     true
   end
+
+  def update_net_income(worker_id, income_amount)
+    income = self.net_income ? self.net_income : 0.0
+    self.net_income = income + Worker.find(worker_id).get_income_for_worker_count(self.id, income_amount)
+  end
+
   private
 
   def setup_password

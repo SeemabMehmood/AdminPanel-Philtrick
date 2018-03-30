@@ -23,7 +23,11 @@ class Worker < ApplicationRecord
   end
 
   def remaining_worker_count
-    self.total_workers - self.user_workers.map(&:worker_count).sum
+    self.total_workers - self.workers_in_use
+  end
+
+  def workers_in_use
+    self.user_workers.map(&:worker_count).sum
   end
 
   def validate_customers(params)
@@ -32,5 +36,9 @@ class Worker < ApplicationRecord
     return false, "Worker count can neither be blank nor 0" if params[:worker_count].blank? || params[:worker_count] == "0"
     return false, "Worker count is greater than workers left in this group." if params[:worker_count].to_i > self.remaining_worker_count
     true
+  end
+
+  def get_income_for_worker_count(user_id, income)
+    self.user_workers.for_user(user_id).worker_count * (income / self.workers_in_use)
   end
 end
