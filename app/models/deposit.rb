@@ -9,6 +9,10 @@ class Deposit < ApplicationRecord
 
   before_save :update_customer_income
 
+  def self.net_income_for_worker_today(worker_id)
+    for_worker_today(worker_id).map(&:income).sum
+  end
+
   private
 
   def update_customer_income
