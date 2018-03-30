@@ -17,7 +17,6 @@
             <th><i class="fa fa-bolt"></i> Cost</th>
             <th>Net Income</th>
             <th>Total Workers</th>
-            <th>Customers</th>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -30,7 +29,6 @@
               <td><i class="fa fa-euro"></i> <%= worker.electricity_cost.to_f %></td>
               <td><i class="fa fa-btc"></i> <%= worker.net_income.to_f %></td>
               <td><%= worker.total_workers %></td>
-              <td><%= render partial: "workers/worker_users_links", locals: { worker: worker } %></td>
               <td>
                 <%= link_to worker do %>
                   <i class="fa fa-eye"></i>
