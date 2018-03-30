@@ -14,10 +14,8 @@
           <thead>
             <tr>
               <th>Title</th>
-              <th>Description</th>
               <th><i class="fa fa-bolt"></i> Cost</th>
-              <th>Net Income</th>
-              <th>Customers</th>
+              <th>Worker Count</th>
               <th></th>
             </tr>
           </thead>
@@ -25,10 +23,8 @@
             <% @user_workers.each do |worker| %>
               <tr>
                 <td><%= truncate titleize(worker.title) %></td>
-                <td><%= truncate worker.description %></td>
                 <td><i class="fa fa-euro"></i> <%= worker.electricity_cost.to_f %></td>
-                <td><i class="fa fa-btc"></i> <%= worker.net_income.to_f %></td>
-                <td><%= render partial: "workers/worker_users_links", locals: { worker: worker } %></td>
+                <td><%= worker.user_workers.for_user(@user.id).worker_count %></td>
                 <td>
                   <% if current_user.admin %>
                     <%= link_to user_remove_worker_path(user_id: @user, worker_id: worker), method: :delete, data: { confirm: "Are you sure you want to remove worker for this customer?" } do %>
