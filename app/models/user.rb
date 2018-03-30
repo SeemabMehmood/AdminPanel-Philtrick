@@ -46,6 +46,18 @@ class User < ApplicationRecord
     self.net_income = income + Worker.find(worker_id).get_income_for_worker_count(self.id, income_amount)
   end
 
+  def daily_income_for_worker(worker_id)
+    Worker.find(worker_id).get_income_for_worker_count(self.id, Deposit.for_worker_today(worker_id).map(&:income).sum)
+  end
+
+  def income_today
+    daily_income = 0.0
+    self.user_workers.each do |user_worker|
+      daily_income += daily_income_for_worker(user_worker.worker_id)
+    end
+    daily_income
+  end
+
   private
 
   def setup_password

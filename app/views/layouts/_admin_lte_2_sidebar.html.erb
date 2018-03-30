@@ -30,11 +30,13 @@
           <i class="fa fa-desktop"></i> <span>Workers</span>
         <% end %>
       </li>
-      <li class="<%= sidebar_active_class('/deposits') %>">
-        <%= link_to deposits_path do %>
-          <i class="fa fa-bitcoin"></i> <span>Deposits</span>
-        <% end %>
-      </li>
+      <% if can? :manage, Deposit %>
+        <li class="<%= sidebar_active_class('/deposits') %>">
+          <%= link_to deposits_path do %>
+            <i class="fa fa-bitcoin"></i> <span>Deposits</span>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </section>
 </aside>
