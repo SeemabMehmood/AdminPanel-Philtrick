@@ -11,7 +11,13 @@
           <%= select_tag "worker_ids[]", options_for_select(
                 @workers.map { |w| [ truncate(w.title), w.id ] },
                 @user.workers.pluck(:id)
-              ), multiple: true, class: "form-control" %>
+              ), multiple: true, class: "form-control", required: true %>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= label_tag :worker_count, "Workers Count" %><br/>
+          <%= number_field_tag :worker_count, class: "form-control", required: true %>
         </div>
       </div>
     </div>
