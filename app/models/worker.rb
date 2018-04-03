@@ -27,6 +27,7 @@ class Worker < ApplicationRecord
   end
 
   def workers_in_use
+    return 0.0 unless self.user_workers.present?
     self.user_workers.map(&:worker_count).sum
   end
 

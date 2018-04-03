@@ -49,7 +49,7 @@ class User < ApplicationRecord
 
   def daily_income_for_worker(worker_id)
     worker = Worker.find(worker_id)
-    return 0.0 unless Deposit.for_worker_today(worker_id)
+    return 0.0 unless Deposit.for_worker_today(worker_id).present?
     worker.get_income_for_worker_count(self.id, Deposit.for_worker_today(worker_id).map(&:income).sum) - (worker.electricity_cost * 0.00018)
   end
 
