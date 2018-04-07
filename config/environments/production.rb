@@ -69,10 +69,10 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'www.philtrickminers.de' }
   config.action_mailer.delivery_method = :smtp
     ActionMailer::Base.smtp_settings = {
-      user_name: "app92318103@heroku.com",
-      password: "z3sakqeb6786",
-      domain: 'www.philtrickminers.de',
-      address: 'smtp.sendgrid.net',
+      user_name: ENV['SENDGRID_USERNAME'],
+      password:  ENV['SENDGRID_PASSWORD'],
+      domain:    'www.philtrickminers.de',
+      address:   'smtp.sendgrid.net',
       port: 587,
       authentication: :plain,
       enable_starttls_auto: true
