@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :deposits
-  devise_for :users, controllers: {registrations: 'registrations', sessions: 'sessions', passwords: 'passwords'}
+  devise_for :users, controllers: {registrations: 'registrations', sessions: 'sessions',
+                                   passwords: 'passwords', confirmations: 'confirmations'}
 
   devise_scope :user do
     authenticated :user do
