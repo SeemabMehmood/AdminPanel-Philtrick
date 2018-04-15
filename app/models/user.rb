@@ -65,6 +65,7 @@ class User < ApplicationRecord
 
   def setup_password
     return if self.persisted?
+    self.confirmed_at = DateTime.now
     self.password = self.password_confirmation = Devise.friendly_token.first(8) unless self.admin
   end
 
