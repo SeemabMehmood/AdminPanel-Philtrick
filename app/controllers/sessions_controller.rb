@@ -1,5 +1,6 @@
 class SessionsController < Devise::SessionsController
   prepend_before_action :captcha_valid, only: [:create]
+  skip_before_action    :verify_authenticity_token, only: :create
 
   layout 'admin_lte_2_login'
 
