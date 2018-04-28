@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406034723) do
+ActiveRecord::Schema.define(version: 20180428063337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "deposits", force: :cascade do |t|
     t.bigint "worker_id"
-    t.decimal "income", precision: 15, scale: 12
+    t.decimal "income", precision: 15, scale: 12, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["worker_id"], name: "index_deposits_on_worker_id"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20180406034723) do
     t.string "currency", default: "USD", null: false
     t.string "language", default: "en", null: false
     t.integer "zip"
-    t.decimal "net_income", precision: 15, scale: 12
+    t.decimal "net_income", precision: 15, scale: 12, default: "0.0"
     t.string "street_name"
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20180406034723) do
     t.string "title", default: "", null: false
     t.text "description"
     t.decimal "electricity_cost", precision: 5, scale: 2, default: "0.0", null: false
-    t.decimal "net_income", precision: 15, scale: 12
+    t.decimal "net_income", precision: 15, scale: 12, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "total_workers", default: 0, null: false
