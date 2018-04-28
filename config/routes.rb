@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users do
+  resources :users, except: [:create] do
     get 'select_workers'
     post 'add_workers'
     delete 'remove_worker'

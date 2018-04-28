@@ -19,21 +19,6 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def create
-    @user = User.new(new_user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-
   def update
     @user = User.find(params[:id])
 
@@ -90,10 +75,6 @@ class UsersController < ApplicationController
   private
     def set_user
       @user = User.find(params[:id])
-    end
-
-    def new_user_params
-      params.require(:user).permit(:name, :email, :username, :company_name, :zip, :country, :street_name, :profit_share)
     end
 
     def edit_user_params
