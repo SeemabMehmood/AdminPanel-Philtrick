@@ -7,6 +7,7 @@ class Deposit < ApplicationRecord
   scope :latest, -> { order('created_at desc').first(5) }
   scope :for_today, -> { where(date: DateTime.now.beginning_of_day..DateTime.now.end_of_day) }
   scope :for_worker, -> (worker_id) { where(worker_id: worker_id) }
+  scope :order_by_date, -> { order('date desc') }
 
   before_create :update_customer_income
 

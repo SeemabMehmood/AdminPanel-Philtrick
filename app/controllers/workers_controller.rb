@@ -18,6 +18,7 @@ class WorkersController < ApplicationController
 
   def show
     @worker_users = @worker.users.paginate(page: params[:page], per_page: Worker::PER_PAGE)
+    @deposits = @worker.deposits.order_by_date.paginate(page: params[:page], per_page: Worker::PER_PAGE)
   end
 
   def new

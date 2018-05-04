@@ -4,6 +4,7 @@ class Worker < ApplicationRecord
 
   has_many :user_workers, dependent: :delete_all
   has_many :users, through: :user_workers
+  has_many :deposits
 
   PER_PAGE = 10
 
