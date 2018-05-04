@@ -44,7 +44,7 @@ class User < ApplicationRecord
 
   def update_net_income(worker_id, income_amount, btc_price)
     worker = Worker.find(worker_id)
-    self.net_income = self.net_income + (income_amount * self.user_workers.for_worker(worker_id).worker_count)
+    self.net_income = self.net_income + (income_amount * self.user_workers.for_worker(worker_id).worker_count * (profit_share / 100))
   end
 
   def daily_income_for_worker(worker_id)
