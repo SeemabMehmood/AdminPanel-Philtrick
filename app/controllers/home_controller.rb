@@ -7,7 +7,7 @@ class HomeController < ApplicationController
       @chart_data = @latest_deposits.group_by(&:date)
       @daily_deposits = Deposit.for_today.group_by(&:worker)
     else
-      @workers = Worker.get_customer_workers(current_user.id)
+      @workers_count = current_user.user_workers.sum(:worker_count)
     end
   end
 end
