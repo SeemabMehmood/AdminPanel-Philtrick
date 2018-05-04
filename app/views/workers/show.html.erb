@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <%= render partial: "workers/worker_users" %>
+  <%= render partial: "workers/worker_users" if current_user.admin? %>
 
   <div class="box-footer clearfix">
     <%= link_to "Back", workers_path, class: "btn btn-default" %>
