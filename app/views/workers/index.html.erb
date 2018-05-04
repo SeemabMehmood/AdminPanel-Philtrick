@@ -16,7 +16,9 @@
             <th>Description</th>
             <th><i class="fa fa-bolt"></i> Cost</th>
             <th>Net Income</th>
-            <th>Total Workers</th>
+            <% if current_user.admin? %>
+              <th>Total Workers</th>
+            <% end %>
             <% unless current_user.admin? %>
               <th>Your Workers</th>
             <% end %>
@@ -31,8 +33,9 @@
               <td><%= truncate worker.description %></td>
               <td><i class="fa fa-euro"></i> <%= worker.electricity_cost.to_f %></td>
               <td><i class="fa fa-btc"></i> <%= worker.net_income.to_f %></td>
-              <td><%= worker.total_workers %></td>
-              <% unless current_user.admin? %>
+              <% if current_user.admin? %>
+                <td><%= worker.total_workers %></td>
+              <% else %>
                 <td><%= worker.user_workers.for_user(current_user.id).worker_count %></td>
               <% end %>
               <td>
