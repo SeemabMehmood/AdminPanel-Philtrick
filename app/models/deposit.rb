@@ -1,7 +1,8 @@
 class Deposit < ApplicationRecord
   belongs_to :worker
 
-  validates :income, numericality: {less_than_or_equal_to: 99}
+  validates :income, numericality: {less_than_or_equal_to: 99999999999, message: "must be less than 10 Billion"}
+  validates :bitcoin_price, numericality: {less_than_or_equal_to: 9999999999, message: "must be less than 1 Billion"}
 
   scope :latest, -> { order('created_at desc').first(5) }
   scope :for_today, -> { where(created_at: DateTime.now.beginning_of_day..DateTime.now.end_of_day) }
