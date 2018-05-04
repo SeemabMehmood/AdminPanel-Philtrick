@@ -2,7 +2,7 @@
   <div class="col-lg-4 col-xs-6">
     <div class="small-box bg-yellow">
       <div class="inner">
-        <h3><%= @workers_count %></h3>
+        <h3><%= current_user.admin? ? @workers.count : @workers_count %></h3>
 
         <p>Total Workers</p>
       </div>
