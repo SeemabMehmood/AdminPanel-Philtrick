@@ -19,8 +19,20 @@
         <p class="text-muted"><%= @worker.description %></p>
       </div>
       <div class="col-xs-6">
-        <strong><i class="fa fa-desktop margin-r-5"></i> Total Workers</strong>
-        <p class="text-muted"><i class="fa fa-btc"></i> <%= @worker.total_workers %></p>
+        <strong><i class="fa fa-desktop margin-r-5"></i>
+          <% if current_user.admin? %>
+            Total Workers
+          <% else %>
+            Your Workers
+          <% end %>
+        </strong>
+        <p class="text-muted"><i class="fa fa-btc"></i>
+          <% if current_user.admin? %>
+             <%= @worker.total_workers %>
+          <% else %>
+            <%= @worker.user_workers.for_user(current_user.id).worker_count %>
+          <% end %>
+        </p>
       </div>
     </div>
     <hr>
@@ -36,7 +48,7 @@
     </div>
   </div>
 
-  <%= render partial: "workers/worker_users" if current_user.admin? %>
+  <%= render partial: "workers/worker_users" %>
 
   <div class="box-footer clearfix">
     <%= link_to "Back", workers_path, class: "btn btn-default" %>
