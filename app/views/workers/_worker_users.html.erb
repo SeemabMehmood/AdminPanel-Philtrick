@@ -68,6 +68,7 @@
               <th>Date</th>
               <th>Bitcoin Price</th>
               <th>Deposit Income</th>
+              <th>Net Income</th>
               <th colspan="3"></th>
             </tr>
           </thead>
@@ -77,6 +78,7 @@
                 <td><%= deposit.date.strftime("%d-%m-%Y") %></td>
                 <td><%= deposit.bitcoin_price %></td>
                 <td><i class="fa fa-btc"></i> <%= deposit.income %></td>
+                <td><i class="fa fa-btc"></i> <%= deposit.income * @worker.total_workers %></td>
               </tr>
             <% end %>
           </tbody>

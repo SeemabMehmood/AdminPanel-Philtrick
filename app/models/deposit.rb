@@ -20,7 +20,7 @@ class Deposit < ApplicationRecord
   def update_customer_income
     worker = Worker.find(self.worker_id)
     self.income = worker.calculate_income(self.income, self.bitcoin_price)
-    worker.net_income += self.income
+    worker.net_income += self.income * worker.total_workers
     worker.users.each do |user|
       user.update_net_income(self.worker_id, self.income, self.bitcoin_price)
       user.save!
