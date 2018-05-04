@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require jquery
 //= require bootstrap-sprockets
+//= require bootstrap-datepicker
 //= require Chart.min
 //= require app
 //= require main

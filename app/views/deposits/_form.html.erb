@@ -20,12 +20,24 @@
               %>
         </div>
       </div>
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= form.label :date %>
+          <%= form.text_field :date, class: "form-control datepicker" %>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col-xs-6">
         <div class="form-group">
           <%= form.label :income %>
-          <%= form.number_field :income, placeholder: "Enter deposit Income", value: form.object.income.to_f, step: :any, class: "form-control" %>
+          <%= form.number_field :income, placeholder: "Enter Deposit Income", value: form.object.income.to_f, step: :any, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= form.label :bitcoin_price, "Bitcoin Price" %>
+          <%= form.number_field :bitcoin_price, placeholder: "Enter Bitcoin Price", step: :any, class: "form-control" %>
         </div>
       </div>
     </div>

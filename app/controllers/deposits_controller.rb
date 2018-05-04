@@ -24,7 +24,7 @@ class DepositsController < ApplicationController
     @deposit = Deposit.new(deposit_params)
 
     respond_to do |format|
-      if @deposit.save
+      if @deposit.save!
         format.html { redirect_to @deposit, notice: 'Deposit was successfully created.' }
         format.json { render :show, status: :created, location: @deposit }
       else
@@ -60,7 +60,7 @@ class DepositsController < ApplicationController
     end
 
     def deposit_params
-      params.require(:deposit).permit(:worker_id, :income)
+      params.require(:deposit).permit(:worker_id, :income, :date, :bitcoin_price, :action_name)
     end
 
     def set_redirect_url
