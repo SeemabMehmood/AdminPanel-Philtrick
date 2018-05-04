@@ -4,7 +4,7 @@ class HomeController < ApplicationController
       @workers = Worker.all
       @offline_workers = Worker.offline
       @latest_deposits = Deposit.latest
-      @chart_data = @latest_deposits.group_by { |d| d.created_at.to_date }
+      @chart_data = @latest_deposits.group_by(&:date)
       @daily_deposits = Deposit.for_today.group_by(&:worker)
     else
       @workers = Worker.get_customer_workers(current_user.id)
