@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180428063337) do
+ActiveRecord::Schema.define(version: 20180504054833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20180428063337) do
     t.decimal "income", precision: 15, scale: 12, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "bitcoin_price", precision: 15, scale: 12, default: "0.0"
+    t.date "date"
     t.index ["worker_id"], name: "index_deposits_on_worker_id"
   end
 
