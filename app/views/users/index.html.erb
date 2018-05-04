@@ -32,7 +32,7 @@
               <td><%= titleize(user.company_name) %></td>
               <td><%= user.profit_share %> %</td>
               <td><i class="fa fa-btc"></i> <%= user.net_income ? user.net_income : 0.0 %></td>
-              <td><%= user.mining_address %></td>
+              <td><%= truncate user.mining_address, length: 17 %></td>
               <td>
                 <%= link_to user do %>
                   <i class="fa fa-eye"></i>
