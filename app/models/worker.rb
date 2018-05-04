@@ -43,7 +43,11 @@ class Worker < ApplicationRecord
     self.user_workers.for_user(user_id).worker_count * income
   end
 
+  def get_electricity_cost(number_of_deposits)
+    self.electricity_cost * number_of_deposits
+  end
+
   def calculate_income(income, btc_price)
-    income - (electricity_cost / btc_price)
+    income - (self.electricity_cost / btc_price)
   end
 end

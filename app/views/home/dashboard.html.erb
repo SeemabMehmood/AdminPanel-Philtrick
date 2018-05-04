@@ -106,11 +106,11 @@
               </tr>
               </thead>
               <tbody>
-              <% @daily_deposits.each do |deposit| %>
+              <% @daily_deposits.each do |worker, deposits| %>
                 <tr>
-                  <td><%= truncate titleize(deposit.worker.title) %></td>
-                  <td><%= Deposit.net_income_for_worker_today(deposit.worker_id) %></td>
-                  <td><i class="fa fa-btc"></i> <%= deposit.worker.electricity_cost %></td>
+                  <td><%= truncate titleize(worker.title) %></td>
+                  <td><%= deposits.map(&:income).sum %></td>
+                  <td><i class="fa fa-euro"></i> <%= worker.get_electricity_cost(deposits.count) %></td>
                 </tr>
               <% end %>
               </tbody>

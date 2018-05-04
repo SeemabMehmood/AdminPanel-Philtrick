@@ -6,12 +6,12 @@ class Deposit < ApplicationRecord
 
   scope :latest, -> { order('created_at desc').first(5) }
   scope :for_today, -> { where(date: DateTime.now.beginning_of_day..DateTime.now.end_of_day) }
-  scope :for_worker_today, -> (worker_id) { where(worker_id: worker_id).for_today }
+  scope :for_worker, -> (worker_id) { where(worker_id: worker_id) }
 
-  before_save :update_customer_income
+  before_create :update_customer_income
 
   def self.net_income_for_worker_today(worker_id)
-    for_worker_today(worker_id).map(&:income).sum
+    self.for_worker(worker_id).for_today.map(&:income).sum
   end
 
   private
