@@ -2,9 +2,6 @@
   <div class="box-header with-border">
     <h3 class="box-title">Date: <%= @deposit.date.to_datetime.strftime("%d-%m-%Y") %></h3>
     <div class="box-tools pull-right">
-      <%= link_to edit_deposit_path(@deposit, method: 'show'), class: "btn btn-box-tool show-actions" do %>
-        <i class="fa fa-edit"></i>
-      <% end %>
       <% if current_user.admin %>
         <%= link_to @deposit, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-box-tool show-actions" do %>
           <i class="fa fa-trash"></i>
