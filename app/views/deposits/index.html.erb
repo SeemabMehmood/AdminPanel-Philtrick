@@ -13,8 +13,9 @@
         <thead>
           <tr>
             <th>Worker</th>
-            <th>Net Income</th>
+            <th>Deposit Income</th>
             <th>Date</th>
+            <th>Bitcoin Price</th>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -24,7 +25,8 @@
             <tr>
             <td><%= link_to truncate(titleize(deposit.worker.title)), deposit.worker %></td>
               <td><i class="fa fa-btc"></i> <%= deposit.income.to_f %></td>
-              <td><%= deposit.created_at.to_datetime.strftime('%d-%m-%Y') %></td>
+              <td><%= deposit.date.strftime('%d-%m-%Y') %></td>
+              <td><i class="fa fa-euro"></i> <%= deposit.bitcoin_price.to_f %></td>
               <td>
                 <%= link_to deposit do %>
                   <i class="fa fa-eye"></i>

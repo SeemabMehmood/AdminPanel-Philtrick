@@ -1,6 +1,6 @@
 <div class="box box-success">
   <div class="box-header with-border">
-    <h3 class="box-title"><%= @deposit.created_at.to_datetime.strftime("%d-%m-%Y") %></h3>
+    <h3 class="box-title">Date: <%= @deposit.date.to_datetime.strftime("%d-%m-%Y") %></h3>
     <div class="box-tools pull-right">
       <%= link_to edit_deposit_path(@deposit, method: 'show'), class: "btn btn-box-tool show-actions" do %>
         <i class="fa fa-edit"></i>
@@ -19,8 +19,19 @@
         <p class="text-muted"><%= link_to titleize(@deposit.worker.title), @deposit.worker %></p>
       </div>
       <div class="col-xs-6">
-        <strong><i class="fa fa-bitcoin margin-r-5"></i> Net Income</strong>
+        <strong><i class="fa fa-bitcoin margin-r-5"></i> Deposit Income</strong>
         <p class="text-muted"><i class="fa fa-btc"></i> <%= @deposit.income %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6">
+        <strong><i class="fa fa-euro margin-r-5"></i>Bitcoin Price</strong>
+        <p class="text-muted"><i class="fa fa-euro"></i> <%= @deposit.bitcoin_price.to_f %></p>
+      </div>
+      <div class="col-xs-6">
+        <strong><i class="fa fa-calendar-plus-o margin-r-5"></i>Created At</strong>
+        <p class="text-muted"> <%= @deposit.created_at.to_datetime.strftime("%d-%m-%Y") %></p>
       </div>
     </div>
   </div>
