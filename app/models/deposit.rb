@@ -5,7 +5,7 @@ class Deposit < ApplicationRecord
   validates :bitcoin_price, numericality: {less_than_or_equal_to: 9999999999, message: "must be less than 1 Billion"}
 
   scope :latest, -> { order('created_at desc').first(5) }
-  scope :for_today, -> { where(created_at: DateTime.now.beginning_of_day..DateTime.now.end_of_day) }
+  scope :for_today, -> { where(date: DateTime.now.beginning_of_day..DateTime.now.end_of_day) }
   scope :for_worker_today, -> (worker_id) { where(worker_id: worker_id).for_today }
 
   before_save :update_customer_income
@@ -18,9 +18,10 @@ class Deposit < ApplicationRecord
 
   def update_customer_income
     worker = Worker.find(self.worker_id)
-    worker.net_income = (worker.net_income ? worker.net_income : 0.0) + self.income
+    self.income = worker.calculate_income(self.income, self.bitcoin_price)
+    worker.net_income += self.income
     worker.users.each do |user|
-      user.update_net_income(self.worker_id, self.income)
+      user.update_net_income(self.worker_id, self.income, self.bitcoin_price)
       user.save!
     end
     worker.save!

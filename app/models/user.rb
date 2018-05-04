@@ -42,16 +42,15 @@ class User < ApplicationRecord
     true
   end
 
-  def update_net_income(worker_id, income_amount)
-    income = self.net_income ? self.net_income : 0.0
+  def update_net_income(worker_id, income_amount, btc_price)
     worker = Worker.find(worker_id)
-    self.net_income = income + worker.get_income_for_worker_count(self.id, income_amount) - (worker.electricity_cost * 0.00018)
+    self.net_income = self.net_income + (income_amount * self.user_workers.for_worker(worker_id).worker_count)
   end
 
   def daily_income_for_worker(worker_id)
     worker = Worker.find(worker_id)
     return 0.0 unless Deposit.for_worker_today(worker_id).present?
-    worker.get_income_for_worker_count(self.id, Deposit.for_worker_today(worker_id).map(&:income).sum) - (worker.electricity_cost * 0.00018)
+    worker.get_income_for_worker_count(self.id, Deposit.net_income_for_worker_today(worker_id))
   end
 
   def income_today
