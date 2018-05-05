@@ -40,16 +40,18 @@
       </div>
       <div class="col-xs-4">
         <div class="form-group">
-          <%= form.label :profit_share %>
-          <%= form.number_field :profit_share, placeholder: "Enter Customer Profit Share amount", required: true, step: :any, class: "form-control" %>
-        </div>
-      </div>
-      <div class="col-xs-4">
-        <div class="form-group">
           <%= form.label :mining_address %>
           <%= form.text_field :mining_address, placeholder: "Enter Customer Mining Address",class: "form-control" %>
         </div>
       </div>
+      <% if current_user.admin? %>
+        <div class="col-xs-4">
+          <div class="form-group">
+            <%= form.label :profit_share %>
+            <%= form.number_field :profit_share, placeholder: "Enter Customer Profit Share amount", required: true, step: :any, class: "form-control" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="box-footer">
