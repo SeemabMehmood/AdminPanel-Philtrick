@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :user_workers, dependent: :delete_all
   has_many :workers, through: :user_workers
 
+  has_many :deposit_workers
+
   scope :customers, -> { where(admin: false).order('id desc') }
 
   attr_accessor :worker_id, :action_name
@@ -45,7 +47,7 @@ class User < ApplicationRecord
 
   def update_net_income(worker_id, income_amount, btc_price)
     worker = Worker.find(worker_id)
-    self.net_income = self.net_income + (income_amount * self.user_workers.for_worker(worker_id).worker_count * (profit_share / 100))
+    self.net_income = self.net_income + (income_amount * self.get_worker_count(worker_id) * (profit_share / 100))
   end
 
   def daily_income_for_worker(worker_id)
@@ -59,6 +61,10 @@ class User < ApplicationRecord
       daily_income += daily_income_for_worker(user_worker.worker_id)
     end
     daily_income
+  end
+
+  def get_worker_count(worker_id)
+    self.user_workers.for_worker(worker_id).worker_count
   end
 
   private

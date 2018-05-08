@@ -4,6 +4,7 @@ class Worker < ApplicationRecord
 
   has_many :user_workers, dependent: :delete_all
   has_many :users, through: :user_workers
+
   has_many :deposits
 
   PER_PAGE = 10
@@ -41,7 +42,7 @@ class Worker < ApplicationRecord
   end
 
   def get_income_for_worker_count(user_id, income)
-    self.user_workers.for_user(user_id).worker_count * income
+    self.get_customer_workers_count(user_id) * income
   end
 
   def get_electricity_cost(number_of_deposits)
@@ -50,5 +51,9 @@ class Worker < ApplicationRecord
 
   def calculate_income(income, btc_price)
     income - (self.electricity_cost / btc_price)
+  end
+
+  def get_customer_workers_count(user_id)
+    self.user_workers.for_user(user_id).worker_count
   end
 end
