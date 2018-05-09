@@ -71,7 +71,7 @@ class WorkersController < ApplicationController
     @worker = Worker.find(params[:worker_id])
     valid, message = @worker.validate_customers(params)
     if valid
-      @worker.add_customer(params[:user_id], params[:worker_count])
+      @worker.add_customer(params[:user_id].to_i, params[:worker_count])
       respond_to do |format|
         format.html { redirect_to @worker, notice: 'Customers were successfully added.' }
         format.json { head :no_content }
