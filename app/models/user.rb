@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   has_many :deposit_workers
 
+  default_scope { order(created_at: :desc) }
   scope :customers, -> { where(admin: false).order('id desc') }
 
   attr_accessor :worker_id, :action_name
