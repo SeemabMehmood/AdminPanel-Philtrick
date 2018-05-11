@@ -59,4 +59,12 @@ class Worker < ApplicationRecord
   def get_customer_workers_count(user_id)
     self.user_workers.for_user(user_id).worker_count
   end
+
+  def get_user_net_income(user_id)
+    sum_income = 0.0
+    self.deposits.each do |deposit|
+      sum_income += deposit.deposit_workers.for_user(user_id).sum(:user_income)
+    end
+    sum_income
+  end
 end

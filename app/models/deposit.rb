@@ -20,7 +20,11 @@ class Deposit < ApplicationRecord
   end
 
   def get_user_worker_count(user_id)
-    self.deposit_workers.for_user(user_id).last.try(:worker_count)
+    self.deposit_workers.find_by_user_id(user_id).try(:worker_count)
+  end
+
+  def user_net_income(user_id)
+    self.deposit_workers.for_user(user_id).sum(:user_income)
   end
 
   private
@@ -39,7 +43,9 @@ class Deposit < ApplicationRecord
   def create_deposit_workers
     worker = Worker.find(self.worker_id)
     worker.users.each do |user|
-      self.deposit_workers.create(user: user, worker_count: user.get_worker_count(worker.id))
+      worker_count_for_user = user.get_worker_count(worker.id)
+      self.deposit_workers.create(user: user, worker_count: worker_count_for_user,
+        user_income: self.income * worker_count_for_user)
     end
   end
 end

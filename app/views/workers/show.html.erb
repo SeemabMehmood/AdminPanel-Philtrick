@@ -42,8 +42,21 @@
         <p class="text-muted"><i class="fa fa-euro"></i> <%= @worker.electricity_cost %></p>
       </div>
       <div class="col-xs-6">
-        <strong><i class="fa fa-bitcoin margin-r-5"></i> Net Income</strong>
-        <p class="text-muted"><i class="fa fa-btc"></i> <%= @worker.net_income %></p>
+
+        <strong><i class="fa fa-bitcoin margin-r-5"></i>
+          <% if current_user.admin? %>
+            Net Income
+          <% else %>
+            Your Net Income
+          <% end %>
+        </strong>
+        <p class="text-muted"><i class="fa fa-btc"></i>
+          <% if current_user.admin? %>
+            <%= @worker.net_income %>
+          <% else %>
+            <%= @worker.get_user_net_income(current_user.id) %>
+          <% end %>
+        </p>
       </div>
     </div>
   </div>
