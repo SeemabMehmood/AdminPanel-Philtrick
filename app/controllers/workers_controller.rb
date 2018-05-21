@@ -3,6 +3,7 @@ class WorkersController < ApplicationController
 
   before_action :set_worker, only: [:show, :edit, :update, :destroy]
   before_action :set_redirect_url, only: [:update]
+  before_action :set_currencies, only: [:new, :edit, :create, :update]
 
   def index
     @workers = current_user.admin ? Worker.all : Worker.get_customer_workers(current_user)
@@ -100,11 +101,16 @@ class WorkersController < ApplicationController
     end
 
     def worker_params
-      params.require(:worker).permit(:title, :description, :electricity_cost, :action_name, :total_workers)
+      params.require(:worker).permit(:title, :description, :electricity_cost,
+                                      :action_name, :total_workers, :currency_id)
     end
 
     def set_redirect_url
       @redirect_url = workers_path
       @redirect_url = @worker if worker_params[:action_name] == 'show'
+    end
+
+    def set_currencies
+      @currencies = Currency.pluck(:code, :id)
     end
 end

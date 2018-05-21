@@ -8,4 +8,8 @@ module WorkersHelper
     [current_user.admin? ? worker.total_workers : deposit.get_user_worker_count(current_user.id),
       worker.title].join(' x ')
   end
+
+  def get_selected_currency(worker)
+    [worker.currency.id, worker.currency.name] if worker.persisted?
+  end
 end
