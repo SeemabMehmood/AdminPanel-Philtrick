@@ -10,6 +10,6 @@ module WorkersHelper
   end
 
   def get_selected_currency(worker)
-    [worker.currency.id, worker.currency.name] if worker.persisted?
+    [worker.currency.try(:id), worker.currency.try(:name)] if worker.persisted?
   end
 end
