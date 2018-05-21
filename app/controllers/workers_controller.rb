@@ -11,7 +11,7 @@ class WorkersController < ApplicationController
   end
 
   def offline
-    @workers = Worker.offline
+    @workers = Worker.offline.paginate(page: params[:page], per_page: Worker::PER_PAGE)
     respond_to do |format|
       format.html { render 'workers/index' }
     end
