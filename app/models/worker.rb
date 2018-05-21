@@ -16,6 +16,7 @@ class Worker < ApplicationRecord
   scope :active, -> { left_outer_joins(:user_workers).where.not(user_workers: { user_id: nil }).uniq }
   scope :offline, -> { left_outer_joins(:user_workers).where(user_workers: { user_id: nil }) }
   scope :get_customer_workers, ->(user_id) { left_outer_joins(:user_workers).where(user_workers: { user_id: user_id }) }
+  scope :get_currency_workers, -> (currency_code) { joins(:currency).where(currencies: { code: currency_code }) }
 
   def add_customer(user_id, worker_count)
     if self.user_exists?(user_id)
@@ -65,7 +66,7 @@ class Worker < ApplicationRecord
   def get_user_net_income(user_id)
     sum_income = 0.0
     self.deposits.each do |deposit|
-      sum_income += deposit.deposit_workers.for_user(user_id).sum(:user_income)
+      sum_income += deposit.user_net_income(user_id)
     end
     sum_income
   end

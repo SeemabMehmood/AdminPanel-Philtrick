@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-lg-4 col-xs-6">
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3><%= local_assigns[:workers].count %></h3>
+
+        <p>Total Workers</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-ios-monitor-outline"></i>
+      </div>
+      <%= link_to workers_path, class: "small-box-footer" do %>See all Workers <i class="fa fa-arrow-circle-right"></i><% end %>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-xs-6">
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3><%= round_income(local_assigns[:income_today], 10) %></h3>
+
+        <p><span class="text-muted"><i class="fa fa-euro"></i></span><%= to_euro(local_assigns[:income_today]) %> <span class="text-muted">/ Day</span></p>
+      </div>
+
+      <%= currency_icon_box(local_assigns[:currency]) %>
+
+      <%= link_to current_user, class: "small-box-footer" do %>See Profile <i class="fa fa-arrow-circle-right"></i><% end %>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-xs-12">
+    <div class="box box-success">
+      <div class="box-header with-border">
+        <h3 class="box-title">Current Balance</h3>
+      </div>
+      <div class="box-body">
+        <h3 class="margin-t-10">
+          <div class="row">
+            <div class="col-lg-12 col-xs-8">
+              <span>
+                <%= currency_icon_balance(local_assigns[:currency]) %>
+                <%= round_income(total_balance, 10) %>
+              </span>
+            </div>
+            <div class="col-lg-12 col-xs-4">
+              <small> <span class="text-muted"><i class="fa fa-euro"></i> <%= to_euro(total_balance) %></span></small>
+            </div>
+          </div>
+        </h3>
+        <hr>
+        <p>Your Mining and BTC Deposit Address</p>
+        <div class="font-bold"><%= current_user.mining_address ? current_user.mining_address : "Not Found" %></div>
+      </div>
+    </div>
+  </div>
+</div>

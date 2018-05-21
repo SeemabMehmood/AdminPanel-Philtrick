@@ -1,0 +1,20 @@
+<%= render partial: 'currency_workers', locals: {
+                                                  workers: @litecoin_workers,
+                                                  currency: 'LTC',
+                                                  income_today: @litecoin_income_today,
+                                                  total_balance: @litecoin_net_income
+                                                } if @litecoin_workers %>
+
+<%= render partial: 'currency_workers', locals: {
+                                                  workers: @bitcoin_workers,
+                                                  currency: 'BTC',
+                                                  income_today: @bitcoin_income_today,
+                                                  total_balance: @bitcoin_net_income
+                                                } if @bitcoin_workers %>
+
+<%= render partial: 'currency_workers', locals: {
+                                                  workers: @bitcash_workers,
+                                                  currency: 'BCH',
+                                                  income_today: @bitcash_income_today,
+                                                  total_balance: @bitcash_net_income
+                                                } if @bitcash_workers %>

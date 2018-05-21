@@ -51,17 +51,24 @@ class User < ApplicationRecord
     self.net_income = self.net_income + (income_amount * self.get_worker_count(worker_id) * (profit_share / 100))
   end
 
-  def daily_income_for_worker(worker_id)
-    worker = Worker.find(worker_id)
-    worker.get_income_for_worker_count(self.id, Deposit.net_income_for_worker_today(worker_id))
+  def daily_income_for_worker(worker)
+    worker.get_income_for_worker_count(self.id, Deposit.net_income_for_worker_today(worker.id))
   end
 
-  def income_today
+  def income_today_for_workers(workers)
     daily_income = 0.0
-    self.user_workers.each do |user_worker|
-      daily_income += daily_income_for_worker(user_worker.worker_id)
+    workers.each do |worker|
+      daily_income += daily_income_for_worker(worker)
     end
     daily_income
+  end
+
+  def net_income_for_workers(workers)
+    total_income = 0.0
+    workers.each do |worker|
+      total_income += worker.get_user_net_income(self.id)
+    end
+    total_income
   end
 
   def get_worker_count(worker_id)

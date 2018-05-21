@@ -1,13 +1,25 @@
 class HomeController < ApplicationController
   def dashboard
     if current_user.admin
-      @workers = Worker.all
+      @workers_count = Worker.all.count
+      @customers_count = User.all.count
       @offline_workers = Worker.offline
       @latest_deposits = Deposit.latest
       @chart_data = @latest_deposits.group_by(&:date)
-      @daily_deposits = Deposit.for_today.group_by(&:worker)
+      @daily_deposits = @latest_deposits.group_by { |d| [d.date, d.worker] }
     else
-      @workers_count = current_user.user_workers.sum(:worker_count)
+      @customer_workers = Worker.get_customer_workers(current_user)
+      @litecoin_workers = @customer_workers.get_currency_workers('LTC')
+      @litecoin_income_today = current_user.income_today_for_workers(@litecoin_workers)
+      @litecoin_net_income = current_user.net_income_for_workers(@litecoin_workers)
+
+      @bitcoin_workers = @customer_workers.get_currency_workers('BTC')
+      @bitcoin_income_today = current_user.income_today_for_workers(@bitcoin_workers)
+      @bitcoin_net_income = current_user.net_income_for_workers(@bitcoin_workers)
+
+      @bitcash_workers = @customer_workers.get_currency_workers('BCH')
+      @bitcash_income_today = current_user.income_today_for_workers(@bitcash_workers)
+      @bitcash_net_income = current_user.net_income_for_workers(@bitcash_workers)
     end
   end
 end
