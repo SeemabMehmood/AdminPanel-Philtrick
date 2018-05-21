@@ -26,7 +26,7 @@
             Your Workers
           <% end %>
         </strong>
-        <p class="text-muted"><i class="fa fa-btc"></i>
+        <p class="text-muted">
           <% if current_user.admin? %>
              <%= @worker.total_workers %>
           <% else %>
@@ -46,15 +46,14 @@
         <p class="text-muted"><i class="fa fa-euro"></i> <%= @worker.electricity_cost %></p>
       </div>
       <div class="col-xs-4">
-
-        <strong><i class="fa fa-bitcoin margin-r-5"></i>
+        <strong><%= currency_symbol(@worker.currency) %>
           <% if current_user.admin? %>
             Net Income
           <% else %>
             Your Net Income
           <% end %>
         </strong>
-        <p class="text-muted"><i class="fa fa-btc"></i>
+        <p class="text-muted"><%= currency_symbol(@worker.currency) %>
           <% if current_user.admin? %>
             <%= @worker.net_income %>
           <% else %>

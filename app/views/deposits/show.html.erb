@@ -16,8 +16,8 @@
         <p class="text-muted"><%= link_to titleize(@deposit.worker.title), @deposit.worker %></p>
       </div>
       <div class="col-xs-6">
-        <strong><i class="fa fa-bitcoin margin-r-5"></i> Deposit Income</strong>
-        <p class="text-muted"><i class="fa fa-btc"></i> <%= @deposit.income %></p>
+        <strong><%= currency_symbol(@deposit.worker.currency) %> Deposit Income</strong>
+        <p class="text-muted"><%= currency_symbol(@deposit.worker.currency) %> <%= @deposit.income %></p>
       </div>
     </div>
 

@@ -20,4 +20,11 @@ module ApplicationHelper
   def model_name(table_nam)
     table_nam == 'users' ? 'customers' : table_nam
   end
+
+  def currency_symbol(currency)
+    return if currency.blank?
+    return '<b>Ł</b>'.html_safe if currency.code == 'LTC'
+    return "<i class='fa fa-btc'></i>".html_safe if currency.code == 'BTC'
+    return "<i class='fa fa-btc bch-icon'></i>".html_safe if currency.code == 'BCH'
+  end
 end

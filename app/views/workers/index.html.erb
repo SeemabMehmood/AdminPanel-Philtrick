@@ -35,7 +35,7 @@
               <td><%= truncate worker.description %></td>
               <td><i class="fa fa-euro"></i> <%= worker.electricity_cost.to_f %></td>
               <td><%= worker.currency.try(:code) %></td>
-              <td><i class="fa fa-btc"></i>
+              <td><%= currency_symbol(worker.currency) %>
                 <% if current_user.admin? %>
                   <%= worker.net_income %>
                 <% else %>

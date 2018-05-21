@@ -82,10 +82,10 @@
               <tr>
                 <td><%= deposit.date.strftime("%d-%m-%Y") %></td>
                 <td><%= deposit.bitcoin_price %></td>
-                <td><i class="fa fa-btc"></i> <%= deposit.income %></td>
+                <td><%= currency_symbol(@worker.currency) %> <%= deposit.income %></td>
                 <td><%= show_worker_count(deposit, @worker) %></td>
                 <% unless current_user.admin? %>
-                  <td><i class="fa fa-btc"></i> <%= deposit.income * @worker.user_workers.for_user(current_user.id).worker_count %></td>
+                  <td><%= currency_symbol(@worker.currency) %> <%= deposit.income * @worker.user_workers.for_user(current_user.id).worker_count %></td>
                 <% end %>
               </tr>
             <% end %>
