@@ -25,6 +25,6 @@ module ApplicationHelper
     return if currency.blank?
     return '<b>Ł</b>'.html_safe if currency.code == 'LTC'
     return "<i class='fa fa-btc'></i>".html_safe if currency.code == 'BTC'
-    return image_tag("bch_icon.ico", class: "bch-icon", alt: "Bitcoin Cash") if currency.code == 'BCH'
+    image_tag("bch_icon.ico", class: "bch-icon", alt: "Bitcoin Cash") if currency.code == 'BCH'
   end
 end
