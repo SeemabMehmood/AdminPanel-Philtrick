@@ -79,7 +79,7 @@
                 <tr>
                   <td><%= deposit.created_at.to_datetime.strftime('%d-%m-%Y') %></td>
                   <td><%= link_to truncate(titleize(deposit.worker.title)), deposit.worker %></td>
-                  <td><i class="fa fa-btc"></i> <%= deposit.income %></td>
+                  <td><%= currency_symbol(deposit.worker.currency) %> <%= deposit.income %></td>
                 </tr>
               <% end %>
               </tbody>
