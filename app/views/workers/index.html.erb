@@ -15,6 +15,7 @@
             <th>Title</th>
             <th>Description</th>
             <th><i class="fa fa-bolt"></i> Cost</th>
+            <th>Currency</th>
             <% if current_user.admin? %>
               <th>Net Income</th>
               <th>Total Workers</th>
@@ -33,6 +34,7 @@
               <td><%= truncate titleize(worker.title) %></td>
               <td><%= truncate worker.description %></td>
               <td><i class="fa fa-euro"></i> <%= worker.electricity_cost.to_f %></td>
+              <td><%= worker.currency.try(:code) %></td>
               <td><i class="fa fa-btc"></i>
                 <% if current_user.admin? %>
                   <%= worker.net_income %>
