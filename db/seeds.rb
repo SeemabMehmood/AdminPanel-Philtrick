@@ -12,3 +12,9 @@ admin.password = 'admin1'
 admin.password_confirmation = 'admin1'
 admin.confirmed_at = DateTime.now
 admin.save!
+
+currencies = {'BCH' => 'Bitcoin Cash', 'BTC' => 'Bitcoin', 'LTC' => 'Litecoin'}
+currencies.each do |currency_code, currency_name|
+  currency = Currency.find_or_initialize_by(name: currency_name, code: currency_code)
+  currency.save!
+end

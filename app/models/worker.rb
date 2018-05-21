@@ -6,6 +6,7 @@ class Worker < ApplicationRecord
   has_many :users, through: :user_workers
 
   has_many :deposits
+  belongs_to :currency
 
   PER_PAGE = 10
 
