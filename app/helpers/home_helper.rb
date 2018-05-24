@@ -1,6 +1,20 @@
 module HomeHelper
-  def to_euro(amount)
-    round_income(amount * 5842.76, 8)
+  def to_euro(amount, currency)
+    return btc_to_euro(amount) if currency == 'BTC'
+    return ltc_to_euro(amount) if currency == 'LTC'
+    bch_to_euro(amount) if currency == 'BCH'
+  end
+
+  def btc_to_euro(amount)
+    round_income(amount * 6498.86, 8)
+  end
+
+  def ltc_to_euro(amount)
+    round_income(amount * 106.07, 8)
+  end
+
+  def bch_to_euro(amount)
+    round_income(amount * 909.40, 8)
   end
 
   def round_income(income, decimal)

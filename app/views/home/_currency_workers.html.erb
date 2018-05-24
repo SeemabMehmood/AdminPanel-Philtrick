@@ -18,7 +18,7 @@
       <div class="inner">
         <h3><%= round_income(local_assigns[:income_today], 10) %></h3>
 
-        <p><span class="text-muted"><i class="fa fa-euro"></i></span><%= to_euro(local_assigns[:income_today]) %> <span class="text-muted">/ Day</span></p>
+        <p><span class="text-muted"><i class="fa fa-euro"></i></span><%= to_euro(local_assigns[:income_today], local_assigns[:currency]) %> <span class="text-muted">/ Day</span></p>
       </div>
 
       <%= currency_icon_box(local_assigns[:currency]) %>
@@ -42,7 +42,7 @@
               </span>
             </div>
             <div class="col-lg-12 col-xs-4">
-              <small> <span class="text-muted"><i class="fa fa-euro"></i> <%= to_euro(total_balance) %></span></small>
+              <small> <span class="text-muted"><i class="fa fa-euro"></i> <%= to_euro(total_balance, local_assigns[:currency]) %></span></small>
             </div>
           </div>
         </h3>
