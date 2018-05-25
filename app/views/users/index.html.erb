@@ -11,12 +11,12 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>Username</th>
-            <th>Email</th>
             <th>Country</th>
             <th>Company</th>
             <th>Profit Share</th>
-            <th>Net Income</th>
+            <th>BTC Net Income</th>
+            <th>LTC Net Income</th>
+            <th>BCH Net Income</th>
             <th>Mining Address</th>
             <th colspan="3"></th>
           </tr>
@@ -26,12 +26,12 @@
           <% @users.each do |user| %>
             <tr>
               <td><%= titleize(user.name) %></td>
-              <td><%= user.username %></td>
-              <td><%= user.email %></td>
               <td><%= user.country_name %></td>
               <td><%= titleize(user.company_name) %></td>
               <td><%= user.profit_share %> %</td>
-              <td><i class="fa fa-btc"></i> <%= user.net_income ? user.net_income : 0.0 %></td>
+              <td><%= currency_symbol_code('BTC') %> <%= user.btc_net_income %></td>
+              <td><%= currency_symbol_code('LTC') %> <%= user.ltc_net_income %></td>
+              <td><%= currency_symbol_code('BCH') %> <%= user.bch_net_income %></td>
               <td><%= truncate user.mining_address, length: 17 %></td>
               <td>
                 <%= link_to user do %>
