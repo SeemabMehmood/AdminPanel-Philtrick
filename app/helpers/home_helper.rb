@@ -6,15 +6,15 @@ module HomeHelper
   end
 
   def btc_to_euro(amount)
-    round_income(amount * 6498.86, 8)
+    round_income(amount * Currency.bitcoin_rate, 8)
   end
 
   def ltc_to_euro(amount)
-    round_income(amount * 106.07, 8)
+    round_income(amount * Currency.litcoin_rate, 8)
   end
 
   def bch_to_euro(amount)
-    round_income(amount * 909.40, 8)
+    round_income(amount * Currency.bitcash_rate, 8)
   end
 
   def round_income(income, decimal)
