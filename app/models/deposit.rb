@@ -4,7 +4,6 @@ class Deposit < ApplicationRecord
   has_many :deposit_workers
 
   validates :income, numericality: {less_than_or_equal_to: 99999999999, message: "must be less than 10 Billion"}
-  validates :bitcoin_price, numericality: {less_than_or_equal_to: 9999999999, message: "must be less than 1 Billion"}
 
   default_scope { order(created_at: :desc) }
   scope :latest, -> { order('created_at desc').first(5) }
@@ -32,7 +31,8 @@ class Deposit < ApplicationRecord
 
   def update_customer_income
     worker = Worker.find(self.worker_id)
-    self.income = worker.calculate_income(self.income, self.bitcoin_price)
+    self.exchange_rate = worker.currency.price
+    self.income = worker.calculate_income(self.income, self.exchange_rate)
     worker.net_income += self.income * worker.total_workers
     worker.users.each do |user|
       user.update_net_income(self.worker_id, self.income, worker.currency.code)

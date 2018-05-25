@@ -60,7 +60,7 @@ class DepositsController < ApplicationController
     end
 
     def deposit_params
-      params.require(:deposit).permit(:worker_id, :income, :date, :bitcoin_price, :action_name)
+      params.require(:deposit).permit(:worker_id, :income, :date, :action_name)
     end
 
     def set_redirect_url

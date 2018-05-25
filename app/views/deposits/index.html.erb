@@ -15,7 +15,7 @@
             <th>Worker</th>
             <th>Deposit Income</th>
             <th>Date</th>
-            <th>Bitcoin Price</th>
+            <th>Exchange Rate</th>
             <th colspan="2"></th>
           </tr>
         </thead>
@@ -26,7 +26,7 @@
             <td><%= link_to truncate(titleize(deposit.worker.title)), deposit.worker %></td>
               <td><%= currency_symbol(deposit.worker.currency) %> <%= deposit.income.to_f %></td>
               <td><%= deposit.date.strftime('%d-%m-%Y') %></td>
-              <td><i class="fa fa-euro"></i> <%= deposit.bitcoin_price.to_f %></td>
+              <td><i class="fa fa-euro"></i> <%= deposit.exchange_rate.to_f %></td>
               <td>
                 <%= link_to deposit do %>
                   <i class="fa fa-eye"></i>

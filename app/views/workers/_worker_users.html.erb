@@ -68,7 +68,7 @@
           <thead>
             <tr>
               <th>Date</th>
-              <th>Bitcoin Price</th>
+              <th>Exchange Rate</th>
               <th>Deposit Income</th>
               <th>Workers</th>
               <% unless current_user.admin? %>
@@ -81,7 +81,7 @@
             <% @deposits.each do |deposit| %>
               <tr>
                 <td><%= deposit.date.strftime("%d-%m-%Y") %></td>
-                <td><%= deposit.bitcoin_price %></td>
+                <td><%= deposit.exchange_rate %></td>
                 <td><%= currency_symbol(@worker.currency) %> <%= deposit.income %></td>
                 <td><%= show_worker_count(deposit, @worker) %></td>
                 <% unless current_user.admin? %>
