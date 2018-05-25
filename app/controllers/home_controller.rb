@@ -11,15 +11,15 @@ class HomeController < ApplicationController
       @customer_workers = Worker.get_customer_workers(current_user)
       @litecoin_workers = @customer_workers.get_currency_workers('LTC')
       @litecoin_income_today = current_user.income_today_for_workers(@litecoin_workers)
-      @litecoin_net_income = current_user.net_income_for_workers(@litecoin_workers)
+      @litecoin_net_income = current_user.ltc_net_income
 
       @bitcoin_workers = @customer_workers.get_currency_workers('BTC')
       @bitcoin_income_today = current_user.income_today_for_workers(@bitcoin_workers)
-      @bitcoin_net_income = current_user.net_income_for_workers(@bitcoin_workers)
+      @bitcoin_net_income = current_user.btc_net_income
 
       @bitcash_workers = @customer_workers.get_currency_workers('BCH')
       @bitcash_income_today = current_user.income_today_for_workers(@bitcash_workers)
-      @bitcash_net_income = current_user.net_income_for_workers(@bitcash_workers)
+      @bitcash_net_income = current_user.bch_net_income
     end
   end
 end
