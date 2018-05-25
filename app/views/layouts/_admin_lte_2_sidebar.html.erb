@@ -37,6 +37,13 @@
           <% end %>
         </li>
       <% end %>
+      <% if can? :manage, Currency %>
+        <li class="<%= sidebar_active_class('/currencies') %>">
+          <%= link_to currencies_path do %>
+            <i class="fa fa-money"></i> <span>Currencies</span>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </section>
 </aside>

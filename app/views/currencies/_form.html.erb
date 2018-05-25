@@ -1,0 +1,35 @@
+<%= form_with(model: currency, local: true) do |form| %>
+  <% if currency.errors.any? %>
+    <% currency.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger alert-dismissable">
+        <i class="fa fa-ban"></i>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <b><%= message %></b>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="box-body">
+    <div class="row">
+      <div class="col-xs-6">
+        <strong>Name</strong>
+        <p class="text-muted"><%= titleize currency.name %></p>
+      </div>
+      <div class="col-xs-6">
+        <strong>Code</strong>
+        <p class="text-muted"><%= currency.code %></p>
+      </div>
+    </div>
+    <div class="row>">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <%= form.label :price, "Currency Price" %>
+          <%= form.number_field :price, placeholder: "Enter Currency Price", step: :any, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= form.submit 'Update Price', class: "btn btn-success margin-r-5" %>
+    <%= link_to 'Back', currencies_path, class: "btn btn-default" %>
+  </div>
+<% end %>

@@ -1,0 +1,41 @@
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">Currencies</h3>
+  </div>
+  <div class="box-body">
+    <div class="table-responsive">
+      <table class="table no-margin">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Price</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= no_data_message(@currencies) %>
+          <% @currencies.each do |currency| %>
+            <tr>
+              <td><%= currency.name %></td>
+              <td><%= currency.code %></td>
+              <td><i class="fa fa-euro"></i> <%= currency.price.to_f %></td>
+              <% if current_user.admin %>
+                <td>
+                  <%= link_to edit_currency_path(currency) do %>
+                    <i class="fa fa-edit"></i>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="box-footer">
+    <div class="flickr_pagination">
+      <%= will_paginate @currencies, container: false %>
+    </div>
+  </div>
+</div>

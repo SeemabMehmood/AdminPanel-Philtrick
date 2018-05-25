@@ -26,4 +26,5 @@ Rails.application.routes.draw do
     delete 'remove_user'
   end
 
+  resources :currencies, only: [:index, :edit, :update]
 end
