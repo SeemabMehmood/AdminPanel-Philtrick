@@ -34,10 +34,8 @@
               </td>
               <% if current_user.admin %>
                 <td>
-                  <% if current_user.admin %>
-                    <%= link_to deposit, method: :delete, data: { confirm: "Are you sure?" } do %>
-                      <i class="fa fa-trash"></i>
-                    <% end %>
+                  <%= link_to deposit, method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <i class="fa fa-trash"></i>
                   <% end %>
                 </td>
               <% end %>
