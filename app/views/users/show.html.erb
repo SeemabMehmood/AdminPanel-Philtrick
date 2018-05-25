@@ -38,15 +38,26 @@
         <p class="text-muted"><%= @user.profit_share %> %</p>
       </div>
       <div class="col-xs-4">
-        <strong><i class="fa fa-bitcoin margin-r-5"></i> Net Income</strong>
-        <p class="text-muted"><i class="fa fa-btc"></i> <%= @user.net_income ? @user.net_income : 0.0 %></p>
+        <strong><i class="fa fa-th margin-r-5"></i> Mining Address</strong>
+        <p class="text-muted"><%= @user.mining_address ? @user.mining_address : "No mining address" %></p>
       </div>
     </div>
     <hr>
     <div class="row">
       <div class="col-xs-4">
-        <strong><i class="fa fa-th margin-r-5"></i> Mining Address</strong>
-        <p class="text-muted"><%= @user.mining_address ? @user.mining_address : "No mining address" %></p>
+        <strong><i class="fa fa-credit-card-alt margin-r-5"></i> BTC Net Income</strong>
+        <p class="text-muted"><%= currency_symbol_code('BTC') %> <%= @user.btc_net_income %></p>
+      </div>
+      <div class="col-xs-4">
+        <strong><i class="fa fa-credit-card-alt margin-r-5"></i> LTC Net Income</strong>
+        <p class="text-muted"><%= currency_symbol_code('LTC') %> <%= @user.ltc_net_income %></p>
+      </div>
+      <div class="col-xs-4">
+        <strong><i class="fa fa-credit-card-alt margin-r-5"></i> BCH Net Income</strong>
+        <p class="text-muted"><%= currency_symbol_code('BCH') %> <%= @user.bch_net_income %></p>
+      </div>
+      <div class="col-xs-4">
+
       </div>
     </div>
   </div>
