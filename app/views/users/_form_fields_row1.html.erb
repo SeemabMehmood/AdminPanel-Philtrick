@@ -14,13 +14,5 @@
         <%= form.text_field :name, required: true, class: "form-control", placeholder: "Enter Name" %>
       </div>
     </div>
-    <% if current_user.admin? %>
-      <div class="col-xs-4">
-        <div class="form-group">
-          <%= form.label :net_income, "Net Income" %>
-          <%= form.number_field :net_income, step: :any, class: "form-control", placeholder: "Enter Net Income" %>
-        </div>
-      </div>
-    <% end %>
   <% end %>
 </div>
