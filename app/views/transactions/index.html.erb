@@ -1,0 +1,38 @@
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">Withdrawal Requests</h3>
+  </div>
+  <div class="box-body">
+    <div class="table-responsive">
+      <table class="table no-margin">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Date</th>
+            <th>Currency</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= no_data_message(@transactions) %>
+          <% @transactions.each do |transaction| %>
+            <tr>
+              <td><%= titleize transaction.user.name %></td>
+              <td><%= transaction.date.strftime('%d-%m-%Y') %></td>
+              <td><%= transaction.currency.code %></td>
+              <td><%= currency_symbol(transaction.currency) %> <%= transaction.amount.to_f %></td>
+              <td><span class="label label-<%= class_for_status(transaction.status) %>"><%= titleize transaction.status %></span></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="box-footer">
+    <div class="flickr_pagination">
+      <%= will_paginate @transactions, container: false %>
+    </div>
+  </div>
+</div>
