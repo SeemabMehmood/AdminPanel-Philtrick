@@ -29,7 +29,6 @@ Rails.application.routes.draw do
   resources :currencies, only: [:index, :edit, :update]
   resources :transactions, only: [:destroy, :index] do
     post 'withdraw'
-    post 'approve'
-    post 'reject'
+    post 'change_status'
   end
 end

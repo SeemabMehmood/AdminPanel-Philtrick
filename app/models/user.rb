@@ -83,6 +83,23 @@ class User < ApplicationRecord
     self.user_workers.for_worker(worker_id).worker_count
   end
 
+  def update_net_income_for_currency(amount, currency_code)
+    case currency_code
+    when 'BTC'
+      self.btc_net_income -= amount
+    when 'LTC'
+      self.ltc_net_income -= amount
+    when 'BCH'
+      self.bch_net_income -= amount
+    end
+  end
+
+  def net_income_for_currency(currency_code)
+    return btc_net_income if currency_code == 'BTC'
+    return ltc_net_income if currency_code == 'LTC'
+    bch_net_income if currency_code == 'BCH'
+  end
+
   private
 
   def setup_password

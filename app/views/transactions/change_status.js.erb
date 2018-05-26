@@ -1,0 +1,7 @@
+$('select[id=<%= @transaction.id %>]').attr("disabled","disabled");
+
+current_balance = $("#<%= @transaction.id %>").children(".current-balance");
+$(current_balance).children("span").html("<%= @user.net_income_for_currency(@transaction.currency.code).to_f %>");
+
+status_label = $("#<%= @transaction.id %>").children(".status-label");
+$(status_label).html("<span class='label label-<%= class_for_status(@transaction.status) %>'><%= titleize @transaction.status %></span>");

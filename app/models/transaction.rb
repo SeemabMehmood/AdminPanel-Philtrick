@@ -6,9 +6,13 @@ class Transaction < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
-  STATUS = ["Approved", "Pending", "Rejected"]
+  STATUS = ["Approved", "Rejected"]
 
-  def is_pending?
+  def pending?
     ['pending', 'Pending'].include? self.status
+  end
+
+  def approved?
+    ['approved', 'Approved'].include? self.status
   end
 end

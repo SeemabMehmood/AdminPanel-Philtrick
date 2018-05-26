@@ -11,6 +11,7 @@
             <th>Date</th>
             <th>Currency</th>
             <th>Amount</th>
+            <th>Current Balance</th>
             <th>Status</th>
             <th colspan="2"></th>
           </tr>
@@ -18,14 +19,27 @@
         <tbody>
           <%= no_data_message(@transactions) %>
           <% @transactions.each do |transaction| %>
-            <tr>
+            <tr id="<%= transaction.id %>">
+              <td class="user-id" hidden><%= transaction.user.id %></td>
               <td><%= titleize transaction.user.name %></td>
               <td><%= transaction.date.strftime('%d-%m-%Y') %></td>
               <td><%= transaction.currency.code %></td>
+
               <td><%= currency_symbol(transaction.currency) %> <%= transaction.amount.to_f %></td>
-              <td><span class="label label-<%= class_for_status(transaction.status) %>"><%= titleize transaction.status %></span></td>
+
+              <td class="current-balance">
+                <%= currency_symbol(transaction.currency) %>
+                <span><%= transaction.user.net_income_for_currency(transaction.currency.code).to_f %></span>
+              </td>
+
+              <td class="status-label"><span class="label label-<%= class_for_status(transaction.status) %>"><%= titleize transaction.status %></span></td>
+
               <td>
-                <%= select_tag :status, options_for_select(Transaction::STATUS.map {|s| [s,s]}), prompt: "Change Status", class: "form-control" if transaction.is_pending? %>
+                <%= select_tag :status,
+                    options_for_select(Transaction::STATUS.map {|s| [s, transaction.id]}),
+                    prompt: transaction.pending? ? "Change Status" : transaction.status,
+                    class: "form-control status-select", id: transaction.id,
+                    disabled: transaction.pending? ? false : true %>
               </td>
               <td>
                 <%= link_to transaction, method: :delete, data: { confirm: "Are you sure?" } do %>

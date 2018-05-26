@@ -1,7 +1,8 @@
 class TransactionsController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_transaction, only: [:destroy, :approve, :reject]
+  skip_before_action :verify_authenticity_token, only: [:change_status]
+  before_action :set_transaction, only: [:destroy]
 
   def index
     @transactions = Transaction.all
@@ -30,10 +31,17 @@ class TransactionsController < ApplicationController
     end
   end
 
-  def approve
-  end
+  def change_status
+    @transaction = Transaction.find(params[:transaction_id])
+    @transaction.update_attributes(status: params[:status])
+    @user = User.find(params[:user_id])
 
-  def reject
+    if @transaction.approved?
+      @user.update_net_income_for_currency(@transaction.amount, @transaction.currency.code)
+      @user.save!
+    end
+
+    respond_to :js
   end
 
   private
