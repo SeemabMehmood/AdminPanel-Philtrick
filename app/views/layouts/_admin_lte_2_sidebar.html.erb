@@ -47,7 +47,7 @@
       <% if can? :manage, Transaction %>
         <li class="<%= sidebar_active_class('/transactions') %>">
           <%= link_to transactions_path do %>
-            <i class="fa fa-money"></i> <span>Withdrawal Requests</span>
+            <i class="fa fa-sign-out"></i> <span>Withdrawal Requests</span>
           <% end %>
         </li>
       <% end %>
