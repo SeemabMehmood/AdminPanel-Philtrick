@@ -25,6 +25,9 @@
               <td><%= currency_symbol(transaction.currency) %> <%= transaction.amount.to_f %></td>
               <td><span class="label label-<%= class_for_status(transaction.status) %>"><%= titleize transaction.status %></span></td>
               <td>
+                <%= select_tag :status, options_for_select(Transaction::STATUS.map {|s| [s,s]}), prompt: "Change Status", class: "form-control" if transaction.is_pending? %>
+              </td>
+              <td>
                 <%= link_to transaction, method: :delete, data: { confirm: "Are you sure?" } do %>
                   <i class="fa fa-trash"></i>
                 <% end %>
