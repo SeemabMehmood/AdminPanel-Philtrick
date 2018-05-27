@@ -32,13 +32,16 @@ class TransactionsController < ApplicationController
   end
 
   def change_status
-    @transaction = Transaction.find(params[:transaction_id])
-    @transaction.update_attributes(status: params[:status])
     @user = User.find(params[:user_id])
+    @transaction = Transaction.find(params[:transaction_id])
 
-    if @transaction.approved?
-      @user.update_net_income_for_currency(@transaction.amount, @transaction.currency.code)
-      @user.save!
+    if @transaction.pending?
+      @transaction.update_attributes(status: params[:status])
+
+      if params[:status] == 'Approved'
+        @user.update_net_income_for_currency(@transaction.amount, @transaction.currency.code)
+        @user.save!
+      end
     end
 
     respond_to :js
