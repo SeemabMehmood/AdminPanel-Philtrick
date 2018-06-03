@@ -35,19 +35,20 @@
               </td>
 
               <td class="status-label"><span class="label label-<%= class_for_status(transaction.status) %>"><%= titleize transaction.status %></span></td>
-
-              <td>
-                <%= select_tag :status,
-                    options_for_select(Transaction::STATUS.map {|s| [s, transaction.id]}),
-                    prompt: transaction.pending? ? "Change Status" : transaction.status,
-                    class: "form-control status-select", id: transaction.id,
-                    disabled: transaction.pending? ? false : true %>
-              </td>
-              <td>
-                <%= link_to transaction, method: :delete, data: { confirm: "Are you sure?" } do %>
-                  <i class="fa fa-trash"></i>
-                <% end %>
-              </td>
+              <% if current_user.admin? %>
+                <td>
+                  <%= select_tag :status,
+                      options_for_select(Transaction::STATUS.map {|s| [s, transaction.id]}),
+                      prompt: transaction.pending? ? "Change Status" : transaction.status,
+                      class: "form-control status-select", id: transaction.id,
+                      disabled: transaction.pending? ? false : true %>
+                </td>
+                <td>
+                  <%= link_to transaction, method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <i class="fa fa-trash"></i>
+                  <% end %>
+                </td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

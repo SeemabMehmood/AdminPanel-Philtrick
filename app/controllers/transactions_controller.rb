@@ -5,22 +5,16 @@ class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:destroy]
 
   def index
-    @transactions = current_user.admin? ? Transaction.all : Transaction.for_user(current_user.id)
+    @transactions = current_user.admin? ? Transaction.all : current_user.transactions
     @transactions = @transactions.paginate(page: params[:page], per_page: Worker::PER_PAGE)
   end
 
   def withdraw
-    @transaction = Transaction.new(transaction_params)
-
-    respond_to do |format|
-      if @transaction.save!
-        format.html { redirect_to @transaction, notice: 'transaction was successfully created.' }
-        format.json { render :show, status: :created, location: @transaction }
-      else
-        format.html { render :new }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+    @transaction = Transaction.build_new(transaction_params, current_user)
+    @message = @transaction.save! ? "Withdrawal Request Sent Successfully." : "Error occurred while placing Withdrawal Request.\nPlease Try again later!"
+      respond_to do |format|
+        format.js { render 'withdraw.js.erb' }
       end
-    end
   end
 
   def destroy
@@ -48,6 +42,10 @@ class TransactionsController < ApplicationController
   end
 
   private
+    def transaction_params
+      params.permit(:currency, :amount)
+    end
+
     def set_transaction
       @transaction = Transaction.find(params[:id])
     end

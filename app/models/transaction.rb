@@ -5,7 +5,6 @@ class Transaction < ApplicationRecord
   validates :amount, numericality: {less_than_or_equal_to: 99999999999, message: "must be less than 10 Billion"}
 
   default_scope { order(created_at: :desc) }
-  scope :for_user, -> (user_id) { includes(:user).where(user_id: user_id) }
 
   STATUS = ["Approved", "Rejected"]
 
@@ -15,5 +14,11 @@ class Transaction < ApplicationRecord
 
   def approved?
     ['approved', 'Approved'].include? self.status
+  end
+
+  def self.build_new(params, user)
+    trans = self.new(amount: params[:amount], date: Date.today, user: user)
+    trans.currency = Currency.find_by_code(params[:currency])
+    trans
   end
 end

@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :workers, through: :user_workers
 
   has_many :deposit_workers
+  has_many :transactions
 
   default_scope { order(created_at: :desc) }
   scope :customers, -> { where(admin: false).order('id desc') }
@@ -98,6 +99,11 @@ class User < ApplicationRecord
     return btc_net_income if currency_code == 'BTC'
     return ltc_net_income if currency_code == 'LTC'
     bch_net_income if currency_code == 'BCH'
+  end
+
+  def pending_transactions_exist?(currency)
+    curr = Currency.find_by_code(currency)
+    self.transactions.exists?(currency: curr.id, status: 'pending')
   end
 
   private

@@ -13,6 +13,14 @@
         <span class="pull-right">
           <b class="grey-color font-21"><%= current_user.ltc_net_income %></b>
           <small class="grey-color">LTC</small>
+
+          <% unless current_user.ltc_net_income.zero? || current_user.pending_transactions_exist?('LTC') %>
+            <%= form_tag(withdraw_path, method: :post, remote: true, class: "display-inline") do %>
+              <%= hidden_field_tag :amount, current_user.ltc_net_income %>
+              <%= hidden_field_tag :currency, 'LTC' %>
+              <%= submit_tag "Withdraw", class: "btn btn-danger btn-sm margin-left-10 ltc-withdraw" %>
+            <% end %>
+          <% end %>
         </span>
       </li>
       <li class="list-group-item bg-turqoise-blue">
@@ -23,6 +31,14 @@
         <span class="pull-right">
           <b class="purple-color font-21"><%= current_user.btc_net_income %></b>
           <small>BTC</small>
+
+          <% unless current_user.btc_net_income.zero? || current_user.pending_transactions_exist?('BTC') %>
+            <%= form_tag(withdraw_path, method: :post, remote: true, class: "display-inline") do %>
+              <%= hidden_field_tag :amount, current_user.btc_net_income %>
+              <%= hidden_field_tag :currency, 'BTC' %>
+              <%= submit_tag "Withdraw", class: "btn btn-danger btn-sm margin-left-10 btc-withdraw" %>
+            <% end %>
+          <% end %>
         </span>
       </li>
       <li class="list-group-item bg-light-orange">
@@ -33,6 +49,14 @@
         <span class="pull-right">
           <b class="purple-color font-21"><%= current_user.bch_net_income %></b>
           <small>BCH</small>
+
+          <% unless current_user.bch_net_income.zero? || current_user.pending_transactions_exist?('BCH') %>
+            <%= form_tag(withdraw_path, method: :post, remote: true, class: "display-inline") do %>
+              <%= hidden_field_tag :amount, current_user.bch_net_income %>
+              <%= hidden_field_tag :currency, 'BCH' %>
+              <%= submit_tag "Withdraw", class: "btn btn-danger btn-sm margin-left-10 bch-withdraw" %>
+            <% end %>
+          <% end %>
         </span>
       </li>
     </ul>
