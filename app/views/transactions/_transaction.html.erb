@@ -1,0 +1,15 @@
+<tr id="<%= transaction.id %>">
+  <td class="user-id" hidden><%= transaction.user.id %></td>
+  <td><%= titleize transaction.user.name %></td>
+  <td><%= transaction.date.strftime('%d-%m-%Y') %></td>
+  <td><%= transaction.currency.code %></td>
+
+  <td><%= currency_symbol(transaction.currency) %> <%= transaction.amount.to_f %></td>
+
+  <td class="current-balance">
+    <%= currency_symbol(transaction.currency) %>
+    <span><%= transaction.user.net_income_for_currency(transaction.currency.code).to_f %></span>
+  </td>
+
+  <td class="status-label"><span class="label label-<%= class_for_status(transaction.status) %>"><%= titleize transaction.status %></span></td>
+</tr>
