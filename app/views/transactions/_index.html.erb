@@ -1,0 +1,62 @@
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title"><%= transactions_heading %></h3>
+  </div>
+  <div class="box-body">
+    <div class="table-responsive">
+      <table class="table no-margin">
+        <% if @transactions.any? %>
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Date</th>
+              <th>Currency</th>
+              <th>Amount</th>
+              <th>Current Balance</th>
+              <th>Status</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+        <% end %>
+        <tbody>
+          <%= no_data_message(@transactions) %>
+          <% @transactions.each do |transaction| %>
+            <tr id="<%= transaction.id %>">
+              <td class="user-id" hidden><%= transaction.user.id %></td>
+              <td><%= titleize transaction.user.name %></td>
+              <td><%= transaction.date.strftime('%d-%m-%Y') %></td>
+              <td><%= transaction.currency.code %></td>
+
+              <td><%= currency_symbol(transaction.currency) %> <%= transaction.amount.to_f %></td>
+
+              <td class="current-balance">
+                <%= currency_symbol(transaction.currency) %>
+                <span><%= transaction.user.net_income_for_currency(transaction.currency.code).to_f %></span>
+              </td>
+
+              <td class="status-label"><span class="label label-<%= class_for_status(transaction.status) %>"><%= titleize transaction.status %></span></td>
+
+              <td>
+                <%= select_tag :status,
+                    options_for_select(Transaction::STATUS.map {|s| [s, transaction.id]}),
+                    prompt: transaction.pending? ? "Change Status" : transaction.status,
+                    class: "form-control status-select", id: transaction.id,
+                    disabled: transaction.pending? ? false : true %>
+              </td>
+              <td>
+                <%= link_to transaction, method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class="fa fa-trash"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="box-footer">
+    <div class="flickr_pagination">
+      <%= will_paginate @transactions, container: false %>
+    </div>
+  </div>
+</div>

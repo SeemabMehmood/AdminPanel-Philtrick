@@ -50,6 +50,12 @@
             <i class="fa fa-sign-out"></i> <span>Withdrawal Requests</span>
           <% end %>
         </li>
+      <% elsif can? :index, Transaction %>
+        <li class="<%= sidebar_active_class('/transactions') %>">
+          <%= link_to transactions_path do %>
+            <i class="fa fa-credit-card-alt"></i> <span>Wallet</span>
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </section>

@@ -5,7 +5,7 @@ class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:destroy]
 
   def index
-    @transactions = Transaction.all
+    @transactions = current_user.admin? ? Transaction.all : Transaction.for_user(current_user.id)
     @transactions = @transactions.paginate(page: params[:page], per_page: Worker::PER_PAGE)
   end
 

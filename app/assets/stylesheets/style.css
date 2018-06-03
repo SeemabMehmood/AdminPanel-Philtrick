@@ -39,3 +39,41 @@
 .margin-t-10 {
   margin-top: 10px;
 }
+
+.currency-icon-wallet {
+  font-size: 21px;
+  line-height: 30px;
+  position: absolute;
+  border-radius: 50%;
+  text-align: center;
+  left: 18px;
+  top: 15px;
+}
+
+.list-group-item {
+  padding: 26px 76px;
+}
+
+.wallet-label {
+  font-size: large;
+}
+
+.bg-dark-grey {
+  background-color: #212F3D;
+}
+
+.bg-turqoise-blue {
+  background-color: #3498DB;
+}
+
+.bg-light-orange {
+  background-color: #F39C12;
+}
+
+.grey-color {
+  color: #95A5A6;
+}
+
+.font-21 {
+  font-size: 21px;
+}

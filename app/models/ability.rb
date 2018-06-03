@@ -11,6 +11,8 @@ class Ability
         cannot :index, User
 
         can [:read], Worker, users: { id: user.id }
+        can [:index], Transaction, user: { id: user.id }
+        can [:withdraw], Transaction
       end
     end
   end
