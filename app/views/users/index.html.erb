@@ -17,6 +17,7 @@
             <th>BTC Net Income</th>
             <th>LTC Net Income</th>
             <th>BCH Net Income</th>
+            <th>Mining Addresses</th>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -31,6 +32,7 @@
               <td><%= currency_symbol_code('BTC') %> <%= user.btc_net_income %></td>
               <td><%= currency_symbol_code('LTC') %> <%= user.ltc_net_income %></td>
               <td><%= currency_symbol_code('BCH') %> <%= user.bch_net_income %></td>
+              <td><%= check_mining_addresses(user) %></td>
               <td>
                 <%= link_to user do %>
                   <i class="fa fa-eye"></i>

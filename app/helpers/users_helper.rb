@@ -16,4 +16,13 @@ module UsersHelper
     return users_path if current_user.admin
     authenticated_root_path
   end
+
+  def check_mining_addresses(user)
+    str = ""
+    str = "BTC" if user.btc_mining_address.present?
+    str = [str, "LTC"].join(", ") if user.ltc_mining_address.present?
+    str = [str, "BCH"].join(", ") if user.bch_mining_address.present?
+    return "Not Found" if str.blank?
+    ["<i class='fa fa-check-circle'></i>", str].join(" ").html_safe
+  end
 end
