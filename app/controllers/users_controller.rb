@@ -78,7 +78,9 @@ class UsersController < ApplicationController
     end
 
     def edit_user_params
-      params.require(:user).permit(:name, :company_name, :zip, :country, :street_name, :profit_share, :action_name, :mining_address)
+      params.require(:user).permit(:name, :company_name, :zip, :country,
+                                    :street_name, :profit_share, :action_name,
+                                    :btc_mining_address, :ltc_mining_address, :bch_mining_address)
     end
 
     def set_redirect_url
