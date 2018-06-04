@@ -12,6 +12,7 @@
               <th>Date</th>
               <th>Currency</th>
               <th>Amount</th>
+              <th>Mining Address</th>
               <th>Current Balance</th>
               <th>Status</th>
               <th colspan="2"></th>
@@ -28,6 +29,8 @@
               <td><%= transaction.currency.code %></td>
 
               <td><%= currency_symbol(transaction.currency) %> <%= transaction.amount.to_f %></td>
+
+              <td><%= show_respective_mining_address(transaction.user, transaction.currency) %></td>
 
               <td class="current-balance">
                 <%= currency_symbol(transaction.currency) %>

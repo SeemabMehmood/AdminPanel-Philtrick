@@ -8,4 +8,10 @@ module TransactionHelper
   def transactions_heading
     current_user.admin? ? "Withdrawal Requests" : "Transactions History"
   end
+
+  def show_respective_mining_address(user, currency)
+    return user.btc_mining_address if currency.code == 'BTC'
+    return user.ltc_mining_address if currency.code == 'LTC'
+    user.bch_mining_address if currency.code == 'BCH'
+  end
 end
