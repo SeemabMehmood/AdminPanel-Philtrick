@@ -10,8 +10,8 @@ module TransactionHelper
   end
 
   def show_respective_mining_address(user, currency)
-    return user.btc_mining_address if currency.code == 'BTC'
-    return user.ltc_mining_address if currency.code == 'LTC'
-    user.bch_mining_address if currency.code == 'BCH'
+    return user.btc_mining_address? ? user.btc_mining_address : "Not Found" if currency.code == 'BTC'
+    return user.ltc_mining_address? ? user.ltc_mining_address : "Not Found" if currency.code == 'LTC'
+    user.bch_mining_address? ? user.bch_mining_address : "Not Found" if currency.code == 'BCH'
   end
 end
