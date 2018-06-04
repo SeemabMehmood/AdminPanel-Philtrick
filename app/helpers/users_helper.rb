@@ -9,7 +9,7 @@ module UsersHelper
 
   def back_user_form_url(action_name, user)
     return users_path if action_name == 'index' || user.new_record?
-    current_user if action_name == 'show' || action_name.blank?
+    user if action_name == 'show' || action_name.blank?
   end
 
   def back_user_show_url
