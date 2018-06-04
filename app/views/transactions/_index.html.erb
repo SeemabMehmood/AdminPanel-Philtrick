@@ -12,8 +12,8 @@
               <th>Date</th>
               <th>Currency</th>
               <th>Amount</th>
-              <th>Mining Address</th>
               <th>Current Balance</th>
+              <th>Mining Address</th>
               <th>Status</th>
               <th colspan="2"></th>
             </tr>
@@ -30,12 +30,12 @@
 
               <td><%= currency_symbol(transaction.currency) %> <%= transaction.amount.to_f %></td>
 
-              <td><%= show_respective_mining_address(transaction.user, transaction.currency) %></td>
-
               <td class="current-balance">
                 <%= currency_symbol(transaction.currency) %>
                 <span><%= transaction.user.net_income_for_currency(transaction.currency.code).to_f %></span>
               </td>
+
+              <td><%= show_respective_mining_address(transaction.user, transaction.currency) %></td>
 
               <td class="status-label"><span class="label label-<%= class_for_status(transaction.status) %>"><%= titleize transaction.status %></span></td>
               <% if current_user.admin? %>
