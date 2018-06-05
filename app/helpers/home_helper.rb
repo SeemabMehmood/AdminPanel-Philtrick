@@ -32,4 +32,10 @@ module HomeHelper
     return image_tag("BCH-icon.png", class: "bch-icon custom-icon", alt: "Bitcoin Cash") if currency == 'BCH'
     "<i class='ion ion-social-bitcoin'></i>".html_safe if currency == 'BTC'
   end
+
+  def show_respective_mining_address_for_code(user, code)
+    return user.btc_mining_address? ? user.btc_mining_address : "Not Found" if code == 'BTC'
+    return user.ltc_mining_address? ? user.ltc_mining_address : "Not Found" if code == 'LTC'
+    user.bch_mining_address? ? user.bch_mining_address : "Not Found" if code == 'BCH'
+  end
 end

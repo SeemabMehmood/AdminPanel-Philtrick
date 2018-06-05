@@ -48,7 +48,7 @@
         </h3>
         <hr>
         <p>Your Mining and BTC Deposit Address</p>
-        <div class="font-bold"><%= current_user.mining_address ? current_user.mining_address : "Not Found" %></div>
+        <div class="font-bold"><%= show_respective_mining_address_for_code(current_user, local_assigns[:currency]) %></div>
       </div>
     </div>
   </div>
