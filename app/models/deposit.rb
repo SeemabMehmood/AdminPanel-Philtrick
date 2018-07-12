@@ -34,7 +34,7 @@ class Deposit < ApplicationRecord
     worker = Worker.find(self.worker_id)
     self.exchange_rate = worker.currency.price
     self.income = worker.calculate_income(self.income, self.exchange_rate)
-    worker.net_income += self.income * worker.total_workers
+    worker.net_income += self.income * worker.workers_in_use
     worker.users.each do |user|
       user.update_net_income(self.worker_id, self.income, worker.currency.code)
       user.save!
