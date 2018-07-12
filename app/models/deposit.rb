@@ -12,6 +12,7 @@ class Deposit < ApplicationRecord
   scope :order_by_date, -> { order('date desc') }
 
   before_create :update_customer_income
+  before_destroy :delete_all_incomes
 
   after_create :create_deposit_workers
 
@@ -49,4 +50,16 @@ class Deposit < ApplicationRecord
         user_income: self.income * worker_count_for_user)
     end
   end
+
+  def delete_all_incomes
+    worker = Worker.find(self.worker_id)
+    worker.net_income -= self.income * worker.workers_in_use
+
+    worker.users.each do |user|
+      user.deduct_net_income(self.worker_id, self.income, worker.currency.code)
+      user.save!
+    end
+    worker.save!
+  end
+
 end

@@ -60,6 +60,19 @@ class User < ApplicationRecord
     end
   end
 
+  def deduct_net_income(worker_id, income_amount, currency_code)
+    worker = Worker.find(worker_id)
+    calculated_net_income = income_amount * self.get_worker_count(worker_id) * (profit_share / 100)
+    case currency_code
+    when 'BTC'
+      self.btc_net_income -= calculated_net_income
+    when 'LTC'
+      self.ltc_net_income -= calculated_net_income
+    when 'BCH'
+      self.bch_net_income -= calculated_net_income
+    end
+  end
+
   def daily_income_for_worker(worker)
     worker.get_income_for_worker_count(self.id, Deposit.net_income_for_worker_today(worker.id))
   end
